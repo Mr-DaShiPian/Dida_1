@@ -6,7 +6,7 @@
     <title>主页</title>
 </head>
 <body>
-<span shiro:hasRole="超级管理员">
+<span shiro:hasRole="超管">
     <a th:href="###" th:value="课程管理"></a>
     <a th:href="###" th:value="角色管理"></a>
     <a th:href="###" th:value="用户管理"></a>
@@ -15,8 +15,8 @@
     <a th:href="###" th:value="班级管理"></a>
 </span>
 <span shiro:hasRole="学生">
-    <a th:href="Student/myInfor" th:value="个人资料管理"></a>
-    <a th:href="###" th:value="周报管理"></a>
+    <a th:href="Student/studentInfor" th:value="个人资料管理"></a>
+    <a th:href="Student/studentWeekly" th:value="周报管理"></a>
     <a th:href="###" th:value="请假申请"></a>
 </span>
 <span shiro:hasRole="讲师">

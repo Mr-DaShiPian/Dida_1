@@ -2,8 +2,11 @@ package com.qf.service;
 
 import com.qf.mapper.StudentMapper;
 import com.qf.pojo.Student;
+import com.qf.pojo.Weekly;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class StudentServiceImpl implements StudentService{
@@ -31,5 +34,10 @@ public class StudentServiceImpl implements StudentService{
     @Override
     public int updateStudent(Student student) {
         return studentMapper.updateStudent(student);
+    }
+
+    @Override
+    public List<Weekly> getWeeklyByName(String name) {
+        return studentMapper.getWeeklyByName(name);
     }
 }
