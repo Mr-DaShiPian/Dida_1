@@ -24,8 +24,7 @@ import java.util.List;
 public class LectureController {
    @Autowired
     private LectureService lectureService;
-    @Autowired
-    private SecurityManager securityManager;
+
     //学生信息查看分页
     @RequestMapping("lectureindex")
     public String index(@RequestParam(defaultValue = "1") int pageNum, Model model){
