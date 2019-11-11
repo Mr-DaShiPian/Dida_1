@@ -6,9 +6,12 @@
 
 <mapper namespace="com.qf.mapper.StudentMapper">
     <select id="getStudentByUserName" parameterType="java.lang.String" resultType="student">
-        select * from student where stuName = #{userName}
+        select * from student where userName = #{userName}
     </select>
     <insert id="addStudent" parameterType="student">
         insert into student(stuName,userName,stuAge,stuSex,stuBirthday,stuTel,cid) values (#{stuName},#{userName},#{stuAge},#{stuSex},#{stuBirthday},#{cid})
     </insert>
+    <update id="updateStudent" parameterType="student">
+        update student set stuName=#{stuName},stuAge=#{stuAge},stuSex=#{stuSex},stuBirthday=#{stuBirthday},stuTel=#{stuTel},cid=#{cid} where userName=#{userName}
+    </update>
 </mapper>

@@ -7,4 +7,6 @@ public interface StudentMapper {
     public Student getStudentByUserName(String userName);
     //添加学生信息
     public int addStudent(Student student);
+    //修改学生信息
+    public int updateStudent(Student student);
 }
