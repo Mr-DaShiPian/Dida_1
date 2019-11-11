@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.30.155.10:3306/dida?characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: 123
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+mybatis:
+  type-aliases-package: com.qf.pojo
+pagehelper:
+  helper-dialect: mysql

@@ -20,5 +20,7 @@ public interface HeadTeacherService {
     public Student getStudentByStuName(String stuName);
     //根据cid得到班级信息
     public MyClass getMyClassByCid(int cid);
+    //查询所有班级的集合
+    public List<String> getClassBy();
 
 }

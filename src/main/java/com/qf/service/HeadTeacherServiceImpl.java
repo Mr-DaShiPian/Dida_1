@@ -42,4 +42,9 @@ public class HeadTeacherServiceImpl implements HeadTeacherService{
     public MyClass getMyClassByCid(int cid) {
         return getMyClassByCid(cid);
     }
+
+    @Override
+    public List<String> getClassBy() {
+        return headTeacherMapper.getClassBy();
+    }
 }

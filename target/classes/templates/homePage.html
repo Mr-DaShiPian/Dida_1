@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+<span shiro:hasRole="超级管理员">
+    <a th:href="###" th:value="课程管理"></a>
+    <a th:href="###" th:value="角色管理"></a>
+    <a th:href="###" th:value="用户管理"></a>
+    <a th:href="###" th:value="权限管理"></a>
+    <a th:href="###" th:value="员工管理"></a>
+    <a th:href="###" th:value="班级管理"></a>
+</span>
+<span shiro:hasRole="学生">
+    <a th:href="Student/myInfor" th:value="个人资料管理"></a>
+    <a th:href="###" th:value="周报管理"></a>
+    <a th:href="###" th:value="请假申请"></a>
+</span>
+<span shiro:hasRole="讲师">
+    <a th:href="###" th:value="个人资料管理"></a>
+    <a th:href="###" th:value="周报查看"></a>
+    <a th:href="###" th:value="请假审批"></a>
+    <a th:href="###" th:value="学生成绩管理"></a>
+    <a th:href="###" th:value="学生信息查看"></a>
+    <a th:href="###" th:value="个人请假"></a>
+</span>
+<span shiro:hasRole="班主任">
+    <a th:href="###" th:value="个人资料管理"></a>
+    <a th:href="###" th:value="周报查看"></a>
+    <a th:href="###" th:value="请假审批"></a>
+    <a th:href="###" th:value="学生管理"></a>
+    <a th:href="###" th:value="成绩查看"></a>
+    <a th:href="###" th:value="个人请假"></a>
+</span>
+<span shiro:hasRole="校长">
+    <a th:href="###" th:value="个人资料管理"></a>
+    <a th:href="###" th:value="请假审批"></a>
+    <a th:href="###" th:value="成绩查看"></a>
+</span>
+</body>
+</html>

@@ -26,7 +26,9 @@ public class HeadTeacherController {
     public String weeklyShow(Model model){
         List<Weekly> allWeekly = headTeacherService.getAllWeekly();
         model.addAttribute("allWeekly",allWeekly);
-        return "weeklyShow";
+        List<String> clazzList = headTeacherService.getClassBy();
+        model.addAttribute("clazzList",clazzList);
+        return "headTeacherWeeklyShow";
     }
     @RequestMapping("forms")
     public String forms(){
