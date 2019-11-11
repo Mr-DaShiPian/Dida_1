@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script th:src="@{js/jquery-3.4.1.js}"></script>
+    <script>
+        $(function(){
+            $(".delBtn").click(function(){
+                var uid = $(this).attr("data");
+                $.post("deleteUser",{uid:uid},function(data){
+                    if(data == "success"){
+                        $("#tr" + uid).remove();
+                    }else{
+                        alert("删除失败");
+                    }
+                })
+            })
+        })
+        function downloadfile(){
+            window.location.href="/UserExcelDownloads";
+        }
+    </script>
+
+</head>
+<body>
+<a shiro:hasRole="role1" href="addUser">增加用户</a>
+<table>
+    <tr>
+        <th>序号</th>
+        <th>用户名</th>
+        <th>密码</th>
+        <th>角色</th>
+        <th>操作</th>
+    </tr>
+
+
+</table>
+<table border="0" style="margin-top:4px; margin-left: 18px">
+    <tr>
+        <td><a href="#" class="easyui-linkbutton" onclick="downloadfile();">数据导出</a></td>
+
+    </tr>
+
+</table>
+</body>
+</html>
