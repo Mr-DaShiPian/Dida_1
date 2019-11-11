@@ -5,4 +5,29 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.qf.mapper.HeadTeacherMapper">
+<!--    得到所有周报-->
+    <select id="getAllWeekly" resultType="weekly">
+        select * from weekly
+    </select>
+<!--    根据日期获取周报-->
+    <select id="getWeeklyByWeekDate" resultType="weekly">
+        select * from weekly where weekDate = #{weekDate}
+    </select>
+<!--    根据姓名获取周报-->
+    <select id="getWeeklyByStuName" resultType="weekly">
+        select * from weekly where stuName=#{stuName}
+    </select>
+<!--    根据姓名和日期获取周报-->
+    <select id="getWeeklyByDateAndStuName" resultType="weekly">
+        select * from weekly where weekDate=#{arg0} and stuName=#{arg1}
+    </select>
+<!--    根据姓名得到学生信息-->
+    <select id="getStudentByStuName" resultType="student">
+        select * from student where stuName=#{stuName}
+    </select>
+<!--    根据cid得到班级信息-->
+    <select id="getMyClassByCid" resultType="myClass">
+        select * from myclass where cid=#{cid}
+    </select>
+
 </mapper>
