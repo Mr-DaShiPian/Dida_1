@@ -4,7 +4,7 @@ public class Weekly {
     private int wkId;
     private String stuName;
     private String title;
-    private String date;
+    private String weekDate;
     private String text;
     private Double score;
 
@@ -14,7 +14,7 @@ public class Weekly {
                 "wkId=" + wkId +
                 ", stuName='" + stuName + '\'' +
                 ", title='" + title + '\'' +
-                ", date='" + date + '\'' +
+                ", weekDate='" + weekDate + '\'' +
                 ", text='" + text + '\'' +
                 ", score=" + score +
                 '}';
@@ -44,12 +44,12 @@ public class Weekly {
         this.title = title;
     }
 
-    public String getDate() {
-        return date;
+    public String getWeekDate() {
+        return weekDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setWeekDate(String weekDate) {
+        this.weekDate = weekDate;
     }
 
     public String getText() {

@@ -3,24 +3,14 @@ package com.qf.pojo;
 public class Student {
     private int stuId;
     private String stuName;
+    private String userName;
     private int stuAge;
     private String stuSex;
     private String stuBirthday;
     private String stuTel;
     private int cid;
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "stuId=" + stuId +
-                ", stuName='" + stuName + '\'' +
-                ", stuAge=" + stuAge +
-                ", stuSex='" + stuSex + '\'' +
-                ", stuBirthday='" + stuBirthday + '\'' +
-                ", stuTel='" + stuTel + '\'' +
-                ", cid=" + cid +
-                '}';
-    }
+
 
     public int getStuId() {
         return stuId;
@@ -36,6 +26,14 @@ public class Student {
 
     public void setStuName(String stuName) {
         this.stuName = stuName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getStuAge() {
@@ -76,5 +74,19 @@ public class Student {
 
     public void setCid(int cid) {
         this.cid = cid;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "stuId=" + stuId +
+                ", stuName='" + stuName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", stuAge=" + stuAge +
+                ", stuSex='" + stuSex + '\'' +
+                ", stuBirthday='" + stuBirthday + '\'' +
+                ", stuTel='" + stuTel + '\'' +
+                ", cid=" + cid +
+                '}';
     }
 }
