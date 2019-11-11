@@ -8,9 +8,21 @@ public class Student {
     private String stuSex;
     private String stuBirthday;
     private String stuTel;
-    private int cid;
+    private String cid;
 
-
+    @Override
+    public String toString() {
+        return "Student{" +
+                "stuId=" + stuId +
+                ", stuName='" + stuName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", stuAge=" + stuAge +
+                ", stuSex='" + stuSex + '\'' +
+                ", stuBirthday='" + stuBirthday + '\'' +
+                ", stuTel='" + stuTel + '\'' +
+                ", cid='" + cid + '\'' +
+                '}';
+    }
 
     public int getStuId() {
         return stuId;
@@ -68,25 +80,11 @@ public class Student {
         this.stuTel = stuTel;
     }
 
-    public int getCid() {
+    public String getCid() {
         return cid;
     }
 
-    public void setCid(int cid) {
+    public void setCid(String cid) {
         this.cid = cid;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "stuId=" + stuId +
-                ", stuName='" + stuName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", stuAge=" + stuAge +
-                ", stuSex='" + stuSex + '\'' +
-                ", stuBirthday='" + stuBirthday + '\'' +
-                ", stuTel='" + stuTel + '\'' +
-                ", cid=" + cid +
-                '}';
     }
 }

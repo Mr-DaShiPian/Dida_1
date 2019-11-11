@@ -2,8 +2,8 @@ package com.qf.pojo;
 
 public class MyClass {
     private int id;
-    private int cid;
-    private String stuName;
+    private String cid;
+    private String cName;
     private String tName;
     private String bName;
 
@@ -11,8 +11,8 @@ public class MyClass {
     public String toString() {
         return "MyClass{" +
                 "id=" + id +
-                ", cid=" + cid +
-                ", stuName='" + stuName + '\'' +
+                ", cid='" + cid + '\'' +
+                ", cName='" + cName + '\'' +
                 ", tName='" + tName + '\'' +
                 ", bName='" + bName + '\'' +
                 '}';
@@ -26,20 +26,20 @@ public class MyClass {
         this.id = id;
     }
 
-    public int getCid() {
+    public String getCid() {
         return cid;
     }
 
-    public void setCid(int cid) {
+    public void setCid(String cid) {
         this.cid = cid;
     }
 
-    public String getStuName() {
-        return stuName;
+    public String getcName() {
+        return cName;
     }
 
-    public void setStuName(String stuName) {
-        this.stuName = stuName;
+    public void setcName(String cName) {
+        this.cName = cName;
     }
 
     public String gettName() {
