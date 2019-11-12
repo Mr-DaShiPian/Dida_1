@@ -182,7 +182,7 @@
                           <th th:text="${var.count}"></th>
                           <td th:text="${i.getcName()}"></td>
                           <td th:text="${i.gettName()}"></td>
-                          <td th:text="操作的超链接"></td>
+                          <td><a th:href="@{editClass(id=${i.getId()})}" th:text="修改"></a></td>
                         </tr>
                       </tbody>
                     </table>

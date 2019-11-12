@@ -50,5 +50,29 @@ public class SupperUserController {
         }
         return "saveClass";
     }
+
+    /**
+     * 修改课程信息
+     * @return
+     */
+    @RequestMapping("editClass")
+    public String editClass(int id,Model model){
+        List<MyClass> classList = supperUserService.selectClassById(id);
+
+        model.addAttribute("classList",classList);
+        model.addAttribute("id",id);
+        return "superEditClass";
+    }
+
+    @RequestMapping("modifyClass")
+    public String modifyClass(int id,String cName,String tName){
+        MyClass myClass = new MyClass(id,cName,tName);
+        int i = supperUserService.updateClassById(myClass);
+        if(i>0){
+            return "redirect:seeClass";
+        }
+        return "editClass";
+    }
+
     
 }

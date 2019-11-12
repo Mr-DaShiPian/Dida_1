@@ -16,7 +16,7 @@ public interface SupperUserMapper {
     public int deleteClass(int id);
     //查看所有课程
     public List<MyClass> selectClass();
-    //查看所有课程根据ID
+    //根据id查询对应的课程信息用于修改提示
     public List<MyClass> selectClassById(int id);
 
 }

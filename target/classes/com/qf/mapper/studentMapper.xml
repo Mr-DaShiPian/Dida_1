@@ -14,4 +14,7 @@
     <update id="updateStudent" parameterType="student">
         update student set stuName=#{stuName},stuAge=#{stuAge},stuSex=#{stuSex},stuBirthday=#{stuBirthday},stuTel=#{stuTel},cid=#{cid} where userName=#{userName}
     </update>
+    <select id="getWeeklyByName" parameterType="java.lang.String" resultType="weekly">
+        select * from weekly where
+    </select>
 </mapper>

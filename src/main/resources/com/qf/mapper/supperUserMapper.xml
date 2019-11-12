@@ -10,7 +10,7 @@
         insert into myclass(cName,tName) values (#{cName},#{tName})
     </insert>
     <update id="updateClassById" parameterType="myClass">
-        update myclass set cName=#{cName},tName=#{cName} where id=#{id}
+        update myclass set cName=#{cName},tName=#{tName} where id=#{id}
     </update>
     <delete id="deleteClass" parameterType="int">
         delete from myclass where id=#{id}
