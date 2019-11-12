@@ -1,7 +1,9 @@
 package com.qf.Controller;
 
 import com.qf.pojo.MyClass;
+import com.qf.pojo.User;
 import com.qf.service.SupperUserService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +36,9 @@ public class SupperUserController {
     public String seeClass(Model model){
         List<MyClass> classList = supperUserService.selectClass();
         model.addAttribute("classList",classList);
+        //查询到的角色信息
+        List<User> roleList = supperUserService.selectRoleList();
+        model.addAttribute("roleList",roleList);
         return "supperClassPage";
     }
     @RequestMapping("saveClass")
@@ -58,7 +63,6 @@ public class SupperUserController {
     @RequestMapping("editClass")
     public String editClass(int id,Model model){
         List<MyClass> classList = supperUserService.selectClassById(id);
-
         model.addAttribute("classList",classList);
         model.addAttribute("id",id);
         return "superEditClass";
@@ -82,5 +86,27 @@ public class SupperUserController {
         }
         return "redirect:seeClass";
     }
-    
+    //角色管理
+//    @RequestMapping("selectRole")
+//   public String selectRole(Model model){
+//       List<User> roleList = supperUserService.selectRoleList();
+//       model.addAttribute("roleList",roleList);
+//       return "supperClassPage";
+//   }
+    //增加角色?需要吗
+    @RequestMapping("addRole")
+    public String addRole(){
+        return "superAddRole";
+    }
+    //修改用户角色
+    @RequestMapping("editRole")
+    public String editRole(int userId,Model model){
+        User user = new User(userId);
+        model.addAttribute("userId",userId);
+        return "supermodifyRole";
+    }
+    @RequestMapping("modifyRole")
+    public String modifyRole(){
+        return "";
+    }
 }

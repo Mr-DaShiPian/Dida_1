@@ -23,12 +23,14 @@ public interface SupperUserMapper {
     //增加角色
     public int insertRole(User user);
     //修改角色
-    public int updateRoleById(MyClass myClass);
+    public int updateRoleById(User user);
     //删除角色
     public int deleteRole(int id);
-    //查询所有jues
+    //查询所有角色
     public List<User> selectRoleList();
     //根据Id查询角色
     public List<User> selectRoleListById(int userId);
+    //增加角色 根据用户名或用户id
+    public int insertRoleByUser(User user);
 
 }

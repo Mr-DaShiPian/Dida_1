@@ -52,8 +52,8 @@ public class SupperUserServiceImpl implements SupperUserService {
     }
 
     @Override
-    public int updateRoleById(MyClass myClass) {
-        return supperUserMapper.updateRoleById(myClass);
+    public int updateRoleById(User user) {
+        return supperUserMapper.updateRoleById(user);
     }
 
     @Override
@@ -69,6 +69,11 @@ public class SupperUserServiceImpl implements SupperUserService {
     @Override
     public List<User> selectRoleListById(int userId) {
         return supperUserMapper.selectRoleListById(userId);
+    }
+
+    @Override
+    public int insertRoleByUser(User user) {
+        return supperUserMapper.insertRoleByUser(user);
     }
 
 
