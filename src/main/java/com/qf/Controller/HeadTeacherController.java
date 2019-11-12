@@ -1,6 +1,6 @@
 package com.qf.Controller;
 
-import com.qf.pojo.Weekly;
+import com.qf.pojo.StudentAndClass;
 import com.qf.service.HeadTeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,10 +24,9 @@ public class HeadTeacherController {
     }
     @RequestMapping("weeklyShow")
     public String weeklyShow(Model model){
-        List<Weekly> allWeekly = headTeacherService.getAllWeekly();
-        model.addAttribute("allWeekly",allWeekly);
-        List<String> clazzList = headTeacherService.getClassBy();
-        model.addAttribute("clazzList",clazzList);
+        List<StudentAndClass> studentAndClass = headTeacherService.getStudentAndClass();
+        model.addAttribute("studentAndClass",studentAndClass);
+        System.out.println(studentAndClass.toString());
         return "headTeacherWeeklyShow";
     }
     @RequestMapping("forms")

@@ -2,6 +2,7 @@ package com.qf.mapper;
 
 import com.qf.pojo.MyClass;
 import com.qf.pojo.Student;
+import com.qf.pojo.StudentAndClass;
 import com.qf.pojo.Weekly;
 
 import java.util.List;
@@ -22,6 +23,9 @@ public interface HeadTeacherMapper {
     public MyClass getMyClassByCid(int cid);
     //查询所有班级的集合
     public List<String> getClassBy();
-
+    //根据班级查询该班级的学生
+    public List<Student> getStudentByCid(int cid);
+    //根据班级查询对应学生 (一对多)
+    public List<StudentAndClass> getStudentAndClass();
 
 }

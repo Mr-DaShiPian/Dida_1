@@ -3,6 +3,7 @@ package com.qf.service;
 import com.qf.mapper.HeadTeacherMapper;
 import com.qf.pojo.MyClass;
 import com.qf.pojo.Student;
+import com.qf.pojo.StudentAndClass;
 import com.qf.pojo.Weekly;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,5 +47,15 @@ public class HeadTeacherServiceImpl implements HeadTeacherService{
     @Override
     public List<String> getClassBy() {
         return headTeacherMapper.getClassBy();
+    }
+
+    @Override
+    public List<Student> getStudentByCid(int cid) {
+        return headTeacherMapper.getStudentByCid(cid);
+    }
+
+    @Override
+    public List<StudentAndClass> getStudentAndClass() {
+        return headTeacherMapper.getStudentAndClass();
     }
 }

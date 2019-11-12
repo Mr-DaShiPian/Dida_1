@@ -33,4 +33,30 @@
         select cName from myclass;
     </select>
 
+<!--    一对多-->
+    <resultMap id="studentClass" type="studentAndClass">
+        <result property="id" column="id"></result>
+        <result property="cName" column="cName"></result>
+        <result property="tName" column="tName"></result>
+        <result property="bName" column="bName"></result>
+        <result property="cid" column="cid"></result>
+        <collection property="studentList" javaType="java.util.ArrayList" ofType="student" resultMap="studentMap"></collection> <!--javaType=""-->
+
+    </resultMap>
+    <resultMap id="studentMap" type="student">
+        <id property="stuId" column="stuId"></id>
+        <result property="stuName" column="stuName"></result>
+        <result property="userName" column="userName"></result>
+        <result property="stuAge" column="stuAge"></result>
+        <result property="stuSex" column="stuSex"></result>
+        <result property="stuBirthday" column="stuBirthday"></result>
+        <result property="stuTel" column="stuTel"></result>
+        <result property="cid" column="cid"></result>
+    </resultMap>
+
+    <select id="getStudentAndClass" resultMap="studentClass" >
+        select * from student inner join myClass on student.cid=myclass.cid;
+    </select>
+
+
 </mapper>
