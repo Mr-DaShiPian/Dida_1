@@ -5,4 +5,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.qf.mapper.SupperUserMapper">
+    <!--课程管理-->
+    <insert id="insertClass" parameterType="myClass">
+        insert into myclass(cName,tName) values (cName=#{cName},tName=#{tName})
+    </insert>
+    <update id="updateClassById" parameterType="myClass">
+        update myclass set cName=#{cName},tName=#{cName} where id=#{id}
+    </update>
+    <delete id="deleteClass" parameterType="int">
+        delete from myclass where id=#{id}
+    </delete>
+    <select id="selectClass" resultType="myClass">
+        select * from myclass;
+    </select>
+    <select id="selectClassById" resultType="myClass">
+        select cName,tName from myclass where id=#{id};
+    </select>
 </mapper>
