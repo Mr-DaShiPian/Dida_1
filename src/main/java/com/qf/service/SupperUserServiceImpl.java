@@ -2,6 +2,7 @@ package com.qf.service;
 
 import com.qf.mapper.SupperUserMapper;
 import com.qf.pojo.MyClass;
+import com.qf.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,4 +45,31 @@ public class SupperUserServiceImpl implements SupperUserService {
     public List<MyClass> selectClassById(int id) {
         return supperUserMapper.selectClassById(id);
     }
+    //角色管理
+    @Override
+    public int insertRole(User user) {
+        return supperUserMapper.insertRole(user);
+    }
+
+    @Override
+    public int updateRoleById(MyClass myClass) {
+        return supperUserMapper.updateRoleById(myClass);
+    }
+
+    @Override
+    public int deleteRole(int id) {
+        return supperUserMapper.deleteRole(id);
+    }
+
+    @Override
+    public List<User> selectRoleList() {
+        return supperUserMapper.selectRoleList();
+    }
+
+    @Override
+    public List<User> selectRoleListById(int userId) {
+        return supperUserMapper.selectRoleListById(userId);
+    }
+
+
 }

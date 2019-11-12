@@ -1,6 +1,7 @@
 package com.qf.service;
 
 import com.qf.pojo.MyClass;
+import com.qf.pojo.User;
 
 import java.util.List;
 
@@ -16,4 +17,15 @@ public interface SupperUserService {
     public List<MyClass> selectClass();
     //查看所有课程根据ID
     public List<MyClass> selectClassById(int id);
+    //角色管理
+    //增加角色
+    public int insertRole(User user);
+    //修改角色
+    public int updateRoleById(MyClass myClass);
+    //删除角色
+    public int deleteRole(int id);
+    //查询所有角色
+    public List<User> selectRoleList();
+    //根据Id查询角色
+    public List<User> selectRoleListById(int userId);
 }
