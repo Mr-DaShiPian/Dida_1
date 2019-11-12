@@ -36,5 +36,19 @@ public class SupperUserController {
         model.addAttribute("classList",classList);
         return "supperClassPage";
     }
+    @RequestMapping("saveClass")
+    public String saveClass(){
+        return "superAddClass";
+    }
+    @RequestMapping("addClass")
+    public String addClass(String cName,String tName){
+        System.out.println(cName);
+        MyClass myClass = new MyClass(cName,tName);
+        int i = supperUserService.insertClass(myClass);
+        if(i>0){
+            return "redirect:seeClass";
+        }
+        return "saveClass";
+    }
     
 }

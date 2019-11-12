@@ -7,7 +7,7 @@
 <mapper namespace="com.qf.mapper.SupperUserMapper">
     <!--课程管理-->
     <insert id="insertClass" parameterType="myClass">
-        insert into myclass(cName,tName) values (cName=#{cName},tName=#{tName})
+        insert into myclass(cName,tName) values (#{cName},#{tName})
     </insert>
     <update id="updateClassById" parameterType="myClass">
         update myclass set cName=#{cName},tName=#{cName} where id=#{id}
