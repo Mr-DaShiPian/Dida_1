@@ -74,5 +74,13 @@ public class SupperUserController {
         return "editClass";
     }
 
+    @RequestMapping("deleteClass")
+    public String deleteClass(int id){
+        int i = supperUserService.deleteClass(id);
+        if(i>0){
+            return "redirect:seeClass";
+        }
+        return "redirect:seeClass";
+    }
     
 }

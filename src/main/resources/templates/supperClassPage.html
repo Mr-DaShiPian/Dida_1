@@ -182,7 +182,9 @@
                           <th th:text="${var.count}"></th>
                           <td th:text="${i.getcName()}"></td>
                           <td th:text="${i.gettName()}"></td>
-                          <td><a th:href="@{editClass(id=${i.getId()})}" th:text="修改"></a></td>
+                          <td><a th:href="@{editClass(id=${i.getId()})}" th:text="修改"></a>
+                              <a th:href="@{deleteClass(id=${i.getId()})}" th:text="删除"></a>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
