@@ -28,15 +28,11 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @RequestMapping("homePage")
-    public String homePage(HttpServletRequest request){
-        request.getSession().setAttribute("userName","xiaoming");
-        return "homePage";
-    }
 
     //个人资料管理
     @RequestMapping("studentInfor")
-    public String myInfor() {
+    public String myInfor(HttpServletRequest request) {
+        request.getSession().setAttribute("userName", "xiaoming");
         return "studentInfor";
     }
 
@@ -48,7 +44,7 @@ public class StudentController {
             Student student = studentService.getStudentByUserName(userName);
             request.getSession().setAttribute("student", student);
         }
-        return "studentUpdateUser";
+        return "updateStudent";
     }
 
     //保存修改信息内容，跳转
@@ -102,7 +98,7 @@ public class StudentController {
     public String studentWeekly(HttpServletRequest request) {
         Student student = (Student) request.getSession().getAttribute("student");
         List<Weekly> weeklyList = studentService.getWeeklyByName(student.getStuName());
-        request.getSession().setAttribute("weeklyList",weeklyList);
+        request.getSession().setAttribute("weeklyList", weeklyList);
         return "studentWeekly";
 
     }

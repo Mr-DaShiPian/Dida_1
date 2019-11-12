@@ -6,11 +6,11 @@
     <title>修改密码</title>
 </head>
 <body>
-<form action="Student/saveUser" method="post">
-用户名：<input type="text" th:value="" th:name="userName" readonly /> <br/>
-新的密码：<input type="password" th:name="password"/><br/>
-确认密码：<input type="password" th:name="password2"/><br/>
-<input type="submit">
+<form action="saveUser" method="post">
+    用户名：<input type="text" th:value="${session.userName}" th:name="userName" readonly/> <br/>
+    新的密码：<input type="password" th:name="password"/><br/>
+    确认密码：<input type="password" th:name="password2"/><br/>
+    <input type="submit">
 </form>
 </body>
 </html>
