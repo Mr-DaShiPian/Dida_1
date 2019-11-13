@@ -42,6 +42,9 @@ public class SupperUserController {
         //查询到的角色信息
         List<User> roleList = supperUserService.selectRoleList();
         model.addAttribute("roleList",roleList);
+        //查询到的员工信息
+        List<User> staffList = supperUserService.selectStaff();
+        model.addAttribute("staffList",staffList);
         return "supperClassPage";
     }
     @RequestMapping("saveClass")
@@ -139,4 +142,6 @@ public class SupperUserController {
         }
         return "redirect:seeClass";
     }
+    //员工管理
+    //页面展示在第一条
 }

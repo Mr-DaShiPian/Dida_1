@@ -81,6 +81,10 @@ public class SupperUserServiceImpl implements SupperUserService {
         return supperUserMapper.insertRoleByUser(user);
     }
 
+    @Override
+    public List<User> selectStaff() {
+        return supperUserMapper.selectStaff();
+    }
 
 
 }

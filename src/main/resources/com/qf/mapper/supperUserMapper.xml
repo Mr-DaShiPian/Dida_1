@@ -42,4 +42,7 @@
     <delete id="deleteRole" parameterType="int">
         delete from user where userId=#{userId}
     </delete>
+    <select id="selectStaff" resultType="user">
+        select userId,userName,role from user where role!='学生';
+    </select>
 </mapper>

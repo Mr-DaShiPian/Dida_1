@@ -35,5 +35,8 @@ public interface SupperUserMapper {
     public int insertRoleByUser(User user);
     //根据userID修改用户角色
     public int updateRoleByUserId(int userId);
+    //员工管理(user表里的role和userName)
+    //查看员工(姓名和角色,排除role=学生)
+    public List<User> selectStaff();
 
 }
