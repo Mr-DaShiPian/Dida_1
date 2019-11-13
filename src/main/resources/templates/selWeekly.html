@@ -3,8 +3,21 @@
       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
-    <title>主页</title>
+    <title>查看周报</title>
 </head>
 <body>
+<h3>我的周报：</h3>
+<h4 style="text-align: center" th:text="${weekly.title}"></h4>
+<div style="width: auto">
+    <span>作者：</span> <span th:text="${weekly.stuName}"></span>&nbsp;&nbsp;
+    <span>日期：</span><span th:text="${weekly.weekDate}"></span>&nbsp;&nbsp;
+    <span>分数：</span>
+    <span th:if="${weekly.score==(-1)}" th:text="未打分"></span>
+    <span th:if="${weekly.score !=(-1)}" th:text="${weekly.score}"></span>
+</div>
+<p style="text-align: center">内&nbsp;&nbsp;容</p>
+<div style="margin: 110px 200px">
+    <textarea th:text="${weekly.text}" style="width: 800px;height: 400px;border-bottom-color:#1b1e21;"  readonly/>
+</div>
 </body>
 </html>

@@ -1,12 +1,17 @@
 package com.qf.Controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.qf.pojo.Student;
 import com.qf.pojo.Weekly;
 import com.qf.service.StudentService;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,22 +33,27 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    @RequestMapping("homePage")
+    public String homePage(HttpServletRequest request) {
+        //仅测试用，正式版要删除
+        request.getSession().setAttribute("userName", "wangdabian");
+        return "homePage";
+    }
 
     //个人资料管理
     @RequestMapping("studentInfor")
     public String myInfor(HttpServletRequest request) {
-        request.getSession().setAttribute("userName", "xiaoming");
-        return "studentInfor";
-    }
-
-    //根据用户名查到Student信息传到修改页面
-    @RequestMapping("getStudent")
-    public String getStudent(HttpServletRequest request) {
         if (request.getSession().getAttribute("student") == null) {
             String userName = (String) request.getSession().getAttribute("userName");
             Student student = studentService.getStudentByUserName(userName);
             request.getSession().setAttribute("student", student);
         }
+        return "studentInfor";
+    }
+
+    //根据用户名查到Student信息传到修改页面
+    @RequestMapping("getStudent")
+    public String getStudent() {
         return "updateStudent";
     }
 
@@ -75,7 +85,7 @@ public class StudentController {
         if (password.equals(password2)) {
             Md5Hash md5Hash = new Md5Hash("password");
             String userName = (String) request.getSession().getAttribute("userName");
-            //缺少user的方法调用
+            studentService.updateUserByName(userName, md5Hash.toString());
             try {
                 PrintWriter writer = response.getWriter();
                 writer.write("密码修改成功！");
@@ -95,11 +105,69 @@ public class StudentController {
 
     //获取学生周报列表
     @RequestMapping("studentWeekly")
-    public String studentWeekly(HttpServletRequest request) {
-        Student student = (Student) request.getSession().getAttribute("student");
+    public String studentWeekly(@RequestParam(defaultValue = "1") Integer startPage, Model model, HttpServletRequest request) {
+        String userName = (String) request.getSession().getAttribute("userName");
+        Student student = studentService.getStudentByUserName(userName);
+        PageHelper.startPage(startPage, 6);
         List<Weekly> weeklyList = studentService.getWeeklyByName(student.getStuName());
+        PageInfo<Weekly> wkPageInfo = new PageInfo<>(weeklyList);
+        model.addAttribute("wkPageInfo", wkPageInfo);
         request.getSession().setAttribute("weeklyList", weeklyList);
         return "studentWeekly";
+    }
 
+    //查看周报
+    @RequestMapping("selWeekly")
+    public String selWeekly(int wkId, HttpServletRequest request) {
+        Weekly weekly = studentService.getWeeklyById(wkId);
+        request.setAttribute("weekly", weekly);
+        return "selWeekly";
+
+    }
+
+    //删除周报
+    @RequestMapping("deleteWeekly")
+    @ResponseBody
+    public String studentWeekly(int wkId) {
+        int i = studentService.delWeeklyById(wkId);
+        if (i > 0) {
+            return "ok";
+        }
+        return "TryAgain";
+    }
+
+    //新建周报功能跳转
+    @RequestMapping("addWeekly")
+    public String addWeekly(HttpServletRequest request) {
+        String userName = (String) request.getSession().getAttribute("userName");
+        Student student = studentService.getStudentByUserName(userName);
+        request.setAttribute("myName", student);
+        return "addWeekly";
+    }
+
+    //保存新建周报
+    @RequestMapping("saveWeekly")
+    public String saveWeekly(Weekly weekly, HttpServletResponse response) {
+        int i = studentService.addWeekly(weekly);
+        PrintWriter writer = null;
+        response.setContentType("text/html;charset=UTF-8");
+        if (i > 0) {
+            try {
+                writer = response.getWriter();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            writer.print("<script language=\"javascript\">alert('新建成功！');window.location.href='studentWeekly'</script>");
+            writer.close();
+            return "studentWeekly";
+        }
+        try {
+            writer = response.getWriter();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        writer.print("<script language=\"javascript\">alert('新建失败！');window.location.href='studentWeekly'</script>");
+        writer.close();
+        return "studentWeekly";
     }
 }

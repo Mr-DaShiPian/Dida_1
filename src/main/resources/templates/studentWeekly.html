@@ -3,8 +3,80 @@
       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
-    <title>主页</title>
+    <title>周报管理</title>
+    <script th:src="@{/js/jquery-3.4.1.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".del").click(function () {
+                var a = $(this).attr("wid");
+                $.get("deleteWeekly",{wkId:a},function (data) {
+                    if (data=="ok"){
+                        $("#tr"+a).remove();
+                    }else{
+                        alter("删除失败!");
+                    }
+                })
+            })
+        })
+    </script>
 </head>
 <body>
+<a th:href="addWeekly" th:text="新建周报"></a>
+<p></p>
+
+<table th:width="900px" style="text-align: center">
+    <caption align="top" >我的周报</caption>
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>主题</th>
+        <th>时间</th>
+        <th>分数</th>
+        <th>操作</th>
+    </tr>
+
+    <tr th:if="${session.weeklyList.size()==0}">
+        <td th:colspan="6" style="text-align:center;">
+            <- - 空空如也 - ->
+        </td>
+    </tr>
+    <tr th:id="tr+${wk.wkId}" th:if="${session.weeklyList.size()!=0}" th:each="wk,var:${session.weeklyList}">
+        <td th:text="${var.count}"></td>
+        <td th:text="${wk.stuName}"></td>
+        <td th:text="${wk.title}"></td>
+        <td th:text="${wk.weekDate}"></td>
+        <td>
+            <span th:if="${wk.score ==(-1)}" th:text="未打分"></span>
+            <span th:if="${wk.score !=(-1)}" th:text="${wk.score}"></span>
+        </td>
+        <td>
+            <a th:href="@{selWeekly(wkId=${wk.wkId})}" >查看</a>
+            <span th:if="${wk.score ==(-1)}">
+                <a href="javascript:void(0)" class="del" th:wid="${wk.wkId}">删除</a>
+            </span>
+        </td>
+    </tr>
+</table>
+<div style="width: 900px" align="center">
+<a th:href="@{studentWeekly(startPage=${wkPageInfo.firstPage})}" th:text="首页"></a>
+<a th:href="@{studentWeekly(startPage=${wkPageInfo.prePage})}"
+   th:if="${wkPageInfo.isHasPreviousPage()}" th:text="上一页">
+</a>
+<span th:if="${! wkPageInfo.isHasPreviousPage()}" th:text="上一页"></span>
+
+<span th:each="page_Num : ${wkPageInfo.navigatepageNums}">
+        <a th:href="@{#}"
+           th:text="${page_Num}"
+           th:if="${page_Num == wkPageInfo.pageNum }"></a>
+        <a th:href="@{studentWeekly(startPage=${page_Num})}"
+           th:text="${page_Num}"
+           th:if="${page_Num != wkPageInfo.pageNum }"></a>
+         </span>
+
+<a th:href="@{studentWeekly(startPage=${wkPageInfo.nextPage})}"
+   th:if="${wkPageInfo.isHasNextPage()}">下一页</a>
+<span th:if="${! wkPageInfo.isHasNextPage()}" th:text="下一页"></span>
+<a th:href="@{studentWeekly(startPage=${wkPageInfo.lastPage})}" th:text="尾页"></a>
+</div>
 </body>
 </html>

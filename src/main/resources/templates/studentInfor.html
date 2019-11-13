@@ -5,7 +5,29 @@
     <title>个人资料管理</title>
 </head>
 <body>
-<a th:href="getStudent" th:text="修改信息"></a>
+<a th:href="getStudent" th:text="修改信息"></a>&nbsp;
 <a th:href="getUser" th:text="修改密码"></a>
+<p></p>
+<table style="width: 900px;margin: 100px 20px">
+    <caption th:text="我的信息"></caption>
+    <tr>
+        <td>姓名:</td>
+        <td th:text="${session.student.stuName}"></td>
+        <td>性别:</td>
+        <td th:text="${session.student.stuSex}"></td>
+    </tr>
+    <tr>
+        <td>生日:</td>
+        <td th:text="${session.student.stuBirthday}"></td>
+        <td>年龄:</td>
+        <td th:text="${session.student.stuAge}"></td>
+    </tr>
+    <tr>
+        <td>电话:</td>
+        <td th:text="${session.student.stuTel}"></td>
+        <td>班级:</td>
+        <td th:text="${session.student.cid}"></td>
+    </tr>
+</table>
 </body>
 </html>

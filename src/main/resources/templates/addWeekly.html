@@ -3,8 +3,24 @@
       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
-    <title>主页</title>
+    <title>新建周报</title>
 </head>
 <body>
+<h3>新建周报：</h3>
+<form action="saveWeekly" method="post">
+<h4 th:text="主题"></h4>
+    <input type="text" th:name="title"><br/>
+<div style="width: auto">
+    <input type="text" th:value="${myName.stuName}" th:name="stuName" hidden>
+    日期：<br/>
+    <input type="date" th:name="weekDate" >
+
+</div>
+<p style="text-align: center">内&nbsp;&nbsp;容</p>
+<div style="margin: 50px 200px">
+    <textarea th:text="请输入..." style="width: 800px;height: 400px;border-bottom-color:#1b1e21;" th:name="text"/>
+</div>
+    <input type="submit">
+</form>
 </body>
 </html>

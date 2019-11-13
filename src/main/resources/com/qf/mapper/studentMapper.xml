@@ -14,7 +14,19 @@
     <update id="updateStudent" parameterType="student">
         update student set stuName=#{stuName},stuAge=#{stuAge},stuSex=#{stuSex},stuBirthday=#{stuBirthday},stuTel=#{stuTel},cid=#{cid} where userName=#{userName}
     </update>
+    <update id="updateUserByName" parameterType="java.lang.String">
+        update user set password=#{arg1} where userName=#{arg0}
+    </update>
     <select id="getWeeklyByName" parameterType="java.lang.String" resultType="weekly">
-        select * from weekly where
+        select * from weekly where stuName =#{stuName}
     </select>
+    <select id="getWeeklyById" resultType="weekly" parameterType="int">
+        select * from weekly where wkId=#{wkId}
+    </select>
+    <delete id="delWeeklyById" parameterType="int">
+        delete from weekly where wkId=#{wkId}
+    </delete>
+    <insert id="addWeekly" parameterType="weekly">
+        insert into weekly(stuName,title,weekDate,text) values (#{stuName},#{title},#{weekDate},#{text})
+    </insert>
 </mapper>

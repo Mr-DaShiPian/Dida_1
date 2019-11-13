@@ -37,7 +37,27 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
+    public int updateUserByName(String name,String password) {
+        return studentMapper.updateUserByName(name,password);
+    }
+
+    @Override
     public List<Weekly> getWeeklyByName(String name) {
         return studentMapper.getWeeklyByName(name);
+    }
+
+    @Override
+    public Weekly getWeeklyById(int id) {
+        return studentMapper.getWeeklyById(id);
+    }
+
+    @Override
+    public int delWeeklyById(int id) {
+        return studentMapper.delWeeklyById(id);
+    }
+
+    @Override
+    public int addWeekly(Weekly weekly) {
+        return studentMapper.addWeekly(weekly);
     }
 }
