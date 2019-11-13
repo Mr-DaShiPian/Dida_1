@@ -5,4 +5,29 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.qf.mapper.SupperUserMapper">
+    <!--课程管理-->
+    <insert id="insertClass" parameterType="myClass">
+        insert into myclass(cName,tName) values (#{cName},#{tName})
+    </insert>
+    <update id="updateClassById" parameterType="myClass">
+        update myclass set cName=#{cName},tName=#{tName} where id=#{id}
+    </update>
+    <delete id="deleteClass" parameterType="int">
+        delete from myclass where id=#{id}
+    </delete>
+    <select id="selectClass" resultType="myClass">
+        select * from myclass;
+    </select>
+    <select id="selectClassById" resultType="myClass">
+        select cName,tName from myclass where id=#{id};
+    </select>
+    <!--角色管理-->
+    <!--无条件查询所有的角色-->
+    <select id="selectRoleList" resultType="user">
+        select * from user
+    </select>
+    <!--增加角色-->
+    <insert id="insertRoleByUser" parameterType="user">
+        insert into user(role) value (#{role}) where id=#{id}
+    </insert>
 </mapper>

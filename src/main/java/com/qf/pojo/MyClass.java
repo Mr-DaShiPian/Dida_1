@@ -7,16 +7,6 @@ public class MyClass {
     private String tName;
     private String bName;
 
-    @Override
-    public String toString() {
-        return "MyClass{" +
-                "id=" + id +
-                ", cid='" + cid + '\'' +
-                ", cName='" + cName + '\'' +
-                ", tName='" + tName + '\'' +
-                ", bName='" + bName + '\'' +
-                '}';
-    }
 
     public int getId() {
         return id;
@@ -56,5 +46,37 @@ public class MyClass {
 
     public void setbName(String bName) {
         this.bName = bName;
+    }
+    public MyClass(String cName, String tName) {
+        this.cName = cName;
+        this.tName = tName;
+    }
+
+    public MyClass(int id, String cName, String tName) {
+        this.id = id;
+        this.cName = cName;
+        this.tName = tName;
+    }
+
+    public MyClass(int id, String cid, String cName, String tName, String bName) {
+        this.id = id;
+        this.cid = cid;
+        this.cName = cName;
+        this.tName = tName;
+        this.bName = bName;
+    }
+
+    public MyClass() {
+    }
+
+    @Override
+    public String toString() {
+        return "MyClass{" +
+                "id=" + id +
+                ", cid='" + cid + '\'' +
+                ", cName='" + cName + '\'' +
+                ", tName='" + tName + '\'' +
+                ", bName='" + bName + '\'' +
+                '}';
     }
 }
