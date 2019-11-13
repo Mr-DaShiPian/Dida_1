@@ -120,7 +120,6 @@ public class SupperUserController {
     //修改用户角色
     @RequestMapping("editRole")
     public String editRole(int userId,Model model){
-        User user = new User(userId);
         List<User> roleList = supperUserService.selectRoleListById(userId);
         List<User> roles = supperUserService.selectRoles();
         model.addAttribute("roles",roles);

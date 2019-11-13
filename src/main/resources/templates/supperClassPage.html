@@ -214,8 +214,8 @@
                           <th th:text="${var.count}"></th>
                           <td th:text="${i.getUserName()}"></td>
                           <td th:text="${i.getRole()}"></td>
-                          <td><a th:href="@{editRole(userId=${i.getUesrId()})}" th:text="修改"></a>
-                              <a th:href="@{deleteRole(userId=${i.getUesrId()})}" th:text="删除"}></a>
+                          <td><a th:href="@{editRole(userId=${i.getUserId()})}" th:text="修改"></a>
+                              <a th:href="@{deleteRole(userId=${i.getUserId()})}" th:text="删除"}></a>
                           </td>
                         </tr>
                       </tbody>
@@ -243,7 +243,7 @@
                       </thead>
                       <tbody>
                         <tr th:each="i,var:${staffList}">
-                          <th th:text="${i.getUesrId()}"></th>
+                          <th th:text="${i.getUserId()}"></th>
                           <td th:text="${i.getName()}"></td>
                           <td th:text="${i.getRole()}"></td>
                           <td>增删改操作</td>
