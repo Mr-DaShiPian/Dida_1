@@ -67,9 +67,9 @@ public class User {
         this.role = role;
     }
 
-    public User(String role, String name) {
-        this.role = role;
+    public User(String name, String role) {
         this.name = name;
+        this.role = role;
     }
 
     @Override
