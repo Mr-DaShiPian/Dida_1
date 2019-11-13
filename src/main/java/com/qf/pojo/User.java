@@ -50,11 +50,24 @@ public class User {
         this.role = role;
     }
 
-    public String getName() {
-        return name;
+    public User(String name,String role){
+        this.name = name;
+        this.role = role;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public User(int userId, String role) {
+        this.userId = userId;
+        this.role = role;
+    }
+
+    public User(int uesrId) {
+        this.userId = uesrId;
+    }
+
+    public User() {
+    }
+
+    public User(String role) {
+        this.role = role;
     }
 }

@@ -33,5 +33,7 @@ public interface SupperUserService {
     public int insertRoleByUser(User user);
     //查看员工(姓名和角色,排除role=学生)
     public List<User> selectStaff();
+    //增加员工
+    public int insertStaff(User user);
 
 }

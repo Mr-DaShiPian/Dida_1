@@ -36,20 +36,20 @@
         <!-- Sidebar Header    -->
         <div class="sidenav-header d-flex align-items-center justify-content-center">
           <!-- User Info-->
-          <div class="sidenav-header-inner text-center"><img th:src="@{/img/avatar-7.jpg}"  alt="person" class="img-fluid rounded-circle">
+          <div class="sidenav-header-inner text-center"><img th:src="@{/img/avatar-7.jpg}" alt="person" class="img-fluid rounded-circle">
             <h2 class="h5">Nathan Andrews</h2><span>Web Developer</span>
           </div>
           <!-- Small Brand information, appears on minimized sidebar-->
-          <div class="sidenav-header-logo"><a href="templates/index.html" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
+          <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
         </div>
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
           <h5 class="sidenav-heading">Main</h5>
           <ul id="side-main-menu" class="side-menu list-unstyled">                  
             <li><a th:href="@{/HeadTeacher/index}"> <i class="icon-home"></i>Home                             </a></li>
-            <li><a th:href="@{/HeadTeacher/forms}"> <i class="icon-form"></i>Forms                             </a></li>
+            <li class="active"><a th:href="@{/HeadTeacher/forms.html}"> <i class="icon-form"></i>Forms                             </a></li>
             <li><a th:href="@{/HeadTeacher/charts}"> <i class="fa fa-bar-chart"></i>Charts                             </a></li>
-            <li class="active"><a th:href="@{/HeadTeacher/tables}"> <i class="icon-grid"></i>Tables                             </a></li>
+            <li><a th:href="@{/HeadTeacher/tables}"> <i class="icon-grid"></i>Tables                             </a></li>
             <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>
               <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                 <li><a href="#">Page</a></li>
@@ -80,7 +80,7 @@
         <nav class="navbar">
           <div class="container-fluid">
             <div class="navbar-holder d-flex align-items-center justify-content-between">
-              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="templates/index.html" class="navbar-brand">
+              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="index.html" class="navbar-brand">
                   <div class="brand-text d-none d-md-inline-block"><span>Bootstrap </span><strong class="text-primary">Dashboard</strong></div></a></div>
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                 <!-- Notifications dropdown-->
@@ -113,7 +113,7 @@
                 <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope"></i><span class="badge badge-info">10</span></a>
                   <ul aria-labelledby="notifications" class="dropdown-menu">
                     <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
-                        <div class="msg-profile"> <img th:src="@{/img/avatar-1.jpg}" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-profile"> <img th:src="@{/img/avatar-1.jpg}"  alt="..." class="img-fluid rounded-circle"></div>
                         <div class="msg-body">
                           <h3 class="h5">Jason Doe</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
                         </div></a></li>
@@ -148,172 +148,73 @@
       <div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="templates/index.html">Home</a></li>
-            <li class="breadcrumb-item active">Tables       </li>
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Forms       </li>
           </ul>
         </div>
       </div>
-      <section>
+      <section class="forms">
         <div class="container-fluid">
           <!-- Page Header-->
           <header> 
-            <h1 class="h3 display">Tables            </h1>
+            <h1 class="h3 display">Forms            </h1>
           </header>
           <div class="row">
             <div class="col-lg-6">
               <div class="card">
-                <div class="card-header">
-                  <h4>课程管理</h4>
+                <div class="card-header d-flex align-items-center">
+                  <h4>新增员工</h4>
                 </div>
                 <div class="card-body">
-                  <div class="table-responsive">
-                    <a th:href="@{saveClass}" th:text="增加课程"></a>
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th th:text="序号"></th>
-                          <th th:text="课程名称"></th>
-                          <th th:text="讲师"></th>
-                          <th th:text="操作"></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr th:each="i,var:${classList}">
-                          <th th:text="${var.count}"></th>
-                          <td th:text="${i.getcName()}"></td>
-                          <td th:text="${i.gettName()}"></td>
-                          <td><a th:href="@{editClass(id=${i.getId()})}" th:text="修改"></a>
-                              <a th:href="@{deleteClass(id=${i.getId()})}" th:text="删除"></a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                  <p>Please enter the staff to add</p>
+                  <form action="saveStaff" method="post">
+                    <div class="form-group">
+                      <label>员工姓名</label>
+                      <input type="text" placeholder="Staff name" class="form-control" name="name">
+                    </div>
+                    <div class="form-group">
+                      <label>员工职位</label>
+                      <input type="text" placeholder="Position name" class="form-control" name="role">
+                    </div>
+                    <div class="form-group">       
+                      <input type="submit" value="Submission" class="btn btn-primary">
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-header">
-                  <h4>角色管理</h4>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <a th:href="@{addRole}" th:text="增加角色"></a>
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th th:text="序号"></th>
-                          <th th:text="用户姓名"></th>
-                          <th th:text="角色"></th>
-                          <th th:text="操作"></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr th:each="i,var:${roleList}">
-                          <th th:text="${var.count}"></th>
-                          <td th:text="${i.getUserName()}"></td>
-                          <td th:text="${i.getRole()}"></td>
-                          <td><a th:href="@{editRole(userId=${i.getUesrId()})}" th:text="修改"></a>
-                              <a th:href="@{deleteRole(userId=${i.getUesrId()})}" th:text="删除"}></a>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-header">
-                  <h4>员工管理</h4>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <a th:href="@{addStaff}" th:text="新增员工"></a>
-                    <table class="table table-striped table-hover">
-                      <thead>
-                        <tr>
-                          <th th:text="员工ID"></th>
-                          <th th:text="姓名"></th>
-                          <th th:text="职位"></th>
-                          <th th:text="操作"></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr th:each="i,var:${staffList}">
-                          <th th:text="${i.getUesrId()}"></th>
-                          <td th:text="${i.getName()}"></td>
-                          <td th:text="${i.getRole()}"></td>
-                          <td>增删改操作</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="card">
-                <div class="card-header">
-                  <h4>Compact Table</h4>
-                </div>
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-striped table-sm">
-                      <thead>
-                        <tr>
-                          <th>#</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Username</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter      </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">4</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">5</th>
-                          <td>Jacob</td>
-                          <td>Thornton</td>
-                          <td>@fat</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">6</th>
-                          <td>Larry</td>
-                          <td>the Bird</td>
-                          <td>@twitter       </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
+
           </div>
+          <!--<div class="col-lg-6">
+            <div class="card">
+              <div class="card-header">
+                <h4>角色管理</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <a th:href="@{addRole}" th:text="增加角色"></a>
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th th:text="序号"></th>
+                      <th th:text="用户姓名"></th>
+                      <th th:text="角色"></th>
+                      <th th:text="操作"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="">
+                      <th th:text=""></th>
+                      <td th:text=""></td>
+                      <td th:text=""></td>
+                      <td></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>-->
         </div>
       </section>
       <footer class="main-footer">

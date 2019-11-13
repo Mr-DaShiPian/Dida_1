@@ -24,6 +24,10 @@ public class SupperUserController {
     public void setSupperUserService(SupperUserService supperUserService) {
         this.supperUserService = supperUserService;
     }
+    //    @RequestMapping("testHtml")
+//    public String test(){
+//        return "forms";
+//    }
     /**
      * 课程管理,从主页跳转
      * 其他页面跳转的 链接 : /SupperUser/selectClass
@@ -144,4 +148,19 @@ public class SupperUserController {
     }
     //员工管理
     //页面展示在第一条
+    //新增员工
+    @RequestMapping("addStaff")
+    public String addStaff(){
+        return "superAddStaff";
+    }
+
+    @RequestMapping("saveStaff")
+    public String saveStaff(String name,String role){
+        User user = new User(name,role);
+        int i = supperUserService.insertStaff(user);
+        if(i>0){
+            return "redirect:selectClass";
+        }
+        return "addStaff";
+    }
 }

@@ -86,5 +86,10 @@ public class SupperUserServiceImpl implements SupperUserService {
         return supperUserMapper.selectStaff();
     }
 
+    @Override
+    public int insertStaff(User user) {
+        return supperUserMapper.insertStaff(user);
+    }
+
 
 }
