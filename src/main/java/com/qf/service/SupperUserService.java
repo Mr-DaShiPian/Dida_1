@@ -26,6 +26,7 @@ public interface SupperUserService {
     public int deleteRole(int id);
     //查询所有角色
     public List<User> selectRoleList();
+    public List<User> selectRoles();
     //根据Id查询角色
     public List<User> selectRoleListById(int userId);
     //增加角色 根据用户名或用户id

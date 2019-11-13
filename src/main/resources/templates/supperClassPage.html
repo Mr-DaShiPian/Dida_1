@@ -214,7 +214,9 @@
                           <th th:text="${var.count}"></th>
                           <td th:text="${i.getUserName()}"></td>
                           <td th:text="${i.getRole()}"></td>
-                          <td><a th:href="@{editRole(userId=${i.getUesrId()})}" th:text="修改"></a></td>
+                          <td><a th:href="@{editRole(userId=${i.getUesrId()})}" th:text="修改"></a>
+                              <a th:href="@{deleteRole(userId=${i.getUesrId()})}" th:text="删除"}></a>
+                          </td>
                         </tr>
                       </tbody>
                     </table>

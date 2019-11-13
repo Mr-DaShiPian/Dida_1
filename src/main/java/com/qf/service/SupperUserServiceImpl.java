@@ -67,6 +67,11 @@ public class SupperUserServiceImpl implements SupperUserService {
     }
 
     @Override
+    public List<User> selectRoles() {
+        return supperUserMapper.selectRoles();
+    }
+
+    @Override
     public List<User> selectRoleListById(int userId) {
         return supperUserMapper.selectRoleListById(userId);
     }
@@ -75,6 +80,7 @@ public class SupperUserServiceImpl implements SupperUserService {
     public int insertRoleByUser(User user) {
         return supperUserMapper.insertRoleByUser(user);
     }
+
 
 
 }

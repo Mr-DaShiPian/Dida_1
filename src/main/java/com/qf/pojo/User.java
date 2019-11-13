@@ -1,7 +1,7 @@
 package com.qf.pojo;
 
 public class User {
-    private int uesrId;
+    private int userId;
     private String userName;
     private String password;
     private String role;
@@ -9,7 +9,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "uesrId=" + uesrId +
+                "uesrId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
@@ -17,11 +17,11 @@ public class User {
     }
 
     public int getUesrId() {
-        return uesrId;
+        return userId;
     }
 
     public void setUesrId(int uesrId) {
-        this.uesrId = uesrId;
+        this.userId = uesrId;
     }
 
     public String getUserName() {
@@ -48,10 +48,19 @@ public class User {
         this.role = role;
     }
 
+    public User(int userId, String role) {
+        this.userId = userId;
+        this.role = role;
+    }
+
     public User(int uesrId) {
-        this.uesrId = uesrId;
+        this.userId = uesrId;
     }
 
     public User() {
+    }
+
+    public User(String role) {
+        this.role = role;
     }
 }

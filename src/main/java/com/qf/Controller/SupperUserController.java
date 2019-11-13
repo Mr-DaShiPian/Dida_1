@@ -26,6 +26,9 @@ public class SupperUserController {
     }
     /**
      * 课程管理,从主页跳转
+     * 其他页面跳转的 链接 : /SupperUser/selectClass
+     *
+     *
      */
     @RequestMapping("selectClass")
     public String selectClass(){
@@ -93,20 +96,47 @@ public class SupperUserController {
 //       model.addAttribute("roleList",roleList);
 //       return "supperClassPage";
 //   }
-    //增加角色?需要吗
+    //增加角色
     @RequestMapping("addRole")
     public String addRole(){
         return "superAddRole";
+    }
+    @RequestMapping("saveRole")
+    public String saveRole(String role){
+        User user = new User(role);
+        int i = supperUserService.insertRoleByUser(user);
+        if(i>0){
+            return "redirect:seeClass";
+        }
+            return "addRole";
     }
     //修改用户角色
     @RequestMapping("editRole")
     public String editRole(int userId,Model model){
         User user = new User(userId);
+        List<User> roleList = supperUserService.selectRoleListById(userId);
+        List<User> roles = supperUserService.selectRoles();
+        model.addAttribute("roles",roles);
+        model.addAttribute("roleList",roleList);
         model.addAttribute("userId",userId);
         return "supermodifyRole";
     }
     @RequestMapping("modifyRole")
-    public String modifyRole(){
-        return "";
+    public String modifyRole(int userId,String role){
+        User user = new User(userId,role);
+        int i = supperUserService.updateRoleById(user);
+        if(i>0){
+            return "redirect:selectClass";
+        }
+        return "supermodifyRole";
+    }
+    //删除角色,测试sql语句,未用ajax
+    @RequestMapping("deleteRole")
+    public String deleteRole(int userId){
+        int i = supperUserService.deleteRole(userId);
+        if(i>0){
+            return "redirect:seeClass";
+        }
+        return "redirect:seeClass";
     }
 }
