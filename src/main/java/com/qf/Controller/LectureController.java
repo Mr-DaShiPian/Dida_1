@@ -3,11 +3,8 @@ package com.qf.Controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qf.pojo.Student;
-
-import com.qf.pojo.User;
 import com.qf.service.LectureService;
 import org.apache.poi.hssf.usermodel.*;
-import org.apache.shiro.mgt.SecurityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +21,8 @@ import java.util.List;
 public class LectureController {
    @Autowired
     private LectureService lectureService;
-
+//    @Autowired
+//    private SecurityManager securityManager;
     //学生信息查看分页
     @RequestMapping("lectureindex")
     public String index(@RequestParam(defaultValue = "1") int pageNum, Model model){

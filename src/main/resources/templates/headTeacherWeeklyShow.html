@@ -59,7 +59,8 @@
                 </li>
                 <li><a th:href="@{/HeadTeacher/login}"> <i class="icon-interface-windows"></i>Login page                             </a></li>
                 <li class="active"> <a th:href="@{/HeadTeacher/weeklyShow}"> <i class="icon-mail"></i>班主任查看周报
-                    <div class="badge badge-warning">6 New</div></a></li>
+                   </a></li>
+                <li > <a th:href="@{/HeadTeacher/headTeacherStudentShow}"> <i class="icon-mail"></i>班主任查看学生信息</a>
             </ul>
         </div>
         <div class="admin-menu">
@@ -150,28 +151,29 @@
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item active">班主任查看周报     </li>
+
             </ul>
         </div>
     </div>
-    <section class="forms">
+    <section class="forms" >
         <div class="container-fluid">
             <!-- Page Header-->
             <header>
                 <h1 class="h3 display">周报            </h1>
             </header>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="card">
+            <div class="row" >
+                <div class="col-lg-6" th:each="studentAndClass,var:${studentAndClass}">
+                    <div class="card" >
                         <div class="card-header d-flex align-items-center">
-                            <h4>学生周报</h4>
+                            <h4 th:text="${studentAndClass.cName}+学生周报"></h4>
                         </div>
-                        <section class="dashboard-header section-padding">
-                            <div class="container-fluid">
-                                <div class="row d-flex align-items-md-stretch">
-                        <div class="col-lg-4 col-md-6" th:each="studentAndClass,var:${studentAndClass}">
+                        <section class="dashboard-header section-padding" >
+                            <div class="container-fluid" >
+                                <div class="row d-flex align-items-md-stretch" >
+                        <div class="col-lg-4 col-md-6" >
                             <!-- Daily Feed Widget-->
-                            <div id="daily-feeds" class="card updates daily-feeds">
-                                <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center">
+                            <div id="daily-feeds" class="card updates daily-feeds" >
+                                <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center" >
                                     <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box" class="" th:text="${studentAndClass.cName}"></a></h2>
                                     <div class="right-column">
                                         <a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box" class=""><i class="fa fa-angle-down"></i></a>

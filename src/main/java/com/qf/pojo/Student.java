@@ -10,6 +10,19 @@ public class Student {
     private String stuTel;
     private String cid;
 
+    public Student() {
+    }
+
+    public Student(String stuName, String userName, int stuAge, String stuSex, String stuBirthday, String stuTel, String cid) {
+        this.stuName = stuName;
+        this.userName = userName;
+        this.stuAge = stuAge;
+        this.stuSex = stuSex;
+        this.stuBirthday = stuBirthday;
+        this.stuTel = stuTel;
+        this.cid = cid;
+    }
+
     @Override
     public String toString() {
         return "Student{" +

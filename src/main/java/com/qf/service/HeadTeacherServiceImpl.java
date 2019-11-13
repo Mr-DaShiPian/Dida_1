@@ -36,12 +36,12 @@ public class HeadTeacherServiceImpl implements HeadTeacherService{
 
     @Override
     public Student getStudentByStuName(String stuName) {
-        return getStudentByStuName(stuName);
+        return headTeacherMapper.getStudentByStuName(stuName);
     }
 
     @Override
-    public MyClass getMyClassByCid(int cid) {
-        return getMyClassByCid(cid);
+    public MyClass getMyClassByCid(String cid) {
+        return headTeacherMapper.getMyClassByCid(cid);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class HeadTeacherServiceImpl implements HeadTeacherService{
     }
 
     @Override
-    public List<Student> getStudentByCid(int cid) {
+    public List<Student> getStudentByCid(String cid) {
         return headTeacherMapper.getStudentByCid(cid);
     }
 
@@ -58,4 +58,23 @@ public class HeadTeacherServiceImpl implements HeadTeacherService{
     public List<StudentAndClass> getStudentAndClass() {
         return headTeacherMapper.getStudentAndClass();
     }
+
+    @Override
+    public int updateStudent(Student student) {
+        return headTeacherMapper.updateStudent(student);
+    }
+    @Override
+    public int deleteStudent(int stuId) {
+        return headTeacherMapper.deleteStudent(stuId);
+    }
+
+    @Override
+    public List<Student> getStudentList() {
+        return headTeacherMapper.getStudentList();
+    }
+
+    public int addStudent(Student student){
+        return headTeacherMapper.addStudent(student);
+    }
+
 }

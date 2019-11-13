@@ -20,12 +20,20 @@ public interface HeadTeacherMapper {
     //根据姓名得到学生信息
     public Student getStudentByStuName(String stuName);
     //根据cid得到班级信息
-    public MyClass getMyClassByCid(int cid);
+    public MyClass getMyClassByCid(String cid);
     //查询所有班级的集合
     public List<String> getClassBy();
     //根据班级查询该班级的学生
-    public List<Student> getStudentByCid(int cid);
+    public List<Student> getStudentByCid(String cid);
     //根据班级查询对应学生 (一对多)
     public List<StudentAndClass> getStudentAndClass();
+    //更新学生信息
+    public int updateStudent(Student student);
+    //删除学生信息
+    public int deleteStudent(int stuId);
+    //查询所有学生
+    public List<Student> getStudentList();
+    //添加学生
+    public int addStudent(Student student);
 
 }

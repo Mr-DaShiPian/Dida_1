@@ -22,7 +22,7 @@
         select * from weekly where weekDate=#{arg0} and stuName=#{arg1}
     </select>
 <!--    根据姓名得到学生信息-->
-    <select id="getStudentByStuName" resultType="student">
+    <select id="getStudentByStuName" resultType="student" parameterType="string">
         select * from student where stuName=#{stuName}
     </select>
 <!--    根据cid得到班级信息-->
@@ -55,8 +55,24 @@
     </resultMap>
 
     <select id="getStudentAndClass" resultMap="studentClass" >
-        select * from student inner join myClass on student.cid=myclass.cid;
+        select * from student inner join myClass on student.cid=myclass.cid order BY student.cid
     </select>
+    <select id="getStudentByCid" resultType="student">
+        select * from student where cid=#{cid};
+    </select>
+    <update id="updateStudent" parameterType="student">
+        UPDATE student SET stuName=#{stuName},stuSex=#{stuSex},stuAge=#{stuAge},stuBirthday=#{stuBirthday},stuTel=#{stuTel}  WHERE stuId=#{stuId}
+    </update>
+    <delete id="deleteStudent" parameterType="int">
+        delete from student  where stuId=#{stuId}
+    </delete>
+    <select id="getStudentList" resultType="student">
+        select * from student;
+    </select>
+    <insert id="addStudent" parameterType="student">
+        insert into student(stuName,userName,stuAge,stuSex,stuBirthday,stuTel,cid) values (#{stuName},#{userName},#{stuAge},#{stuSex},#{stuBirthday},#{stuTel},#{cid})
+    </insert>
+
 
 
 </mapper>
