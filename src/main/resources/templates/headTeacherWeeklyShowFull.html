@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html  lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Bootstrap Dashboard</title>
-    <meta name="description" content=""/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="robots" content="all,follow"/>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"/>
     <!-- Font Awesome CSS-->
@@ -57,10 +58,9 @@
                         <li><a href="#">Page</a></li>
                     </ul>
                 </li>
-                <li><a th:href="@{/HeadTeacher/login}"> <i class="icon-interface-windows"></i>Login page                             </a></li>
-                <li class="active"> <a th:href="@{/HeadTeacher/weeklyShow}"> <i class="icon-mail"></i>班主任查看周报
-                </a></li>
-                <li > <a th:href="@{/HeadTeacher/headTeacherStudentShow}"> <i class="icon-mail"></i>班主任查看学生信息</a>
+                <li><a th:href="@{/HeadTeacher/login}"> <i class="icon-interface-windows"></i>Login page</a></li>
+                <li > <a th:href="@{/HeadTeacher/weeklyShow}"> <i class="icon-mail"></i>班主任查看周报</a>
+                <li class="active"> <a th:href="@{/HeadTeacher/headTeacherStudentShow}"> <i class="icon-mail"></i>班主任查看学生信息</a>
             </ul>
         </div>
         <div class="admin-menu">
@@ -81,7 +81,7 @@
         <nav class="navbar">
             <div class="container-fluid">
                 <div class="navbar-holder d-flex align-items-center justify-content-between">
-                    <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="index.html" class="navbar-brand">
+                    <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="templates/index.html" class="navbar-brand">
                         <div class="brand-text d-none d-md-inline-block"><span>Bootstrap </span><strong class="text-primary">Dashboard</strong></div></a></div>
                     <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                         <!-- Notifications dropdown-->
@@ -149,59 +149,63 @@
     <div class="breadcrumb-holder">
         <div class="container-fluid">
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">班主任查看周报     </li>
-
+                <li class="breadcrumb-item"><a href="templates/index.html">Home</a></li>
+                <li class="breadcrumb-item active">学生信息修改       </li>
             </ul>
         </div>
     </div>
-    <section class="forms" >
+    <section class="forms">
         <div class="container-fluid">
             <!-- Page Header-->
             <header>
-                <h1 class="h3 display">周报            </h1>
+                <h1 class="h3 display">学生信息修改            </h1>
+                <a type="button" class="btn btn-primary" th:href="@{weeklyShow}" th:text="返回"></a>
             </header>
-            <div class="row" >
-                <div class="col-lg-6" th:each="studentAndClass,var:${studentAndClass}">
-                    <div class="card" >
+            <div class="row">
+                <div class="col-lg-6" th:each="weekly,var:${weeklyList}">
+                    <div class="card">
                         <div class="card-header d-flex align-items-center">
-                            <h4 th:text="${studentAndClass.cName}+学生周报"></h4>
+                            <h4 th:text="${weekly.getStuName()}"+周报查看></h4>
                         </div>
-                        <section class="dashboard-header section-padding" >
-                            <div class="container-fluid" >
-                                <div class="row d-flex align-items-md-stretch" >
-                                    <div class="col-lg-4 col-md-6" >
-                                        <!-- Daily Feed Widget-->
-                                        <div id="daily-feeds" class="card updates daily-feeds" >
-                                            <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center" >
-                                                <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box" class="" th:text="${studentAndClass.cName}"></a></h2>
-                                                <div class="right-column">
-                                                    <a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box" class=""><i class="fa fa-angle-down"></i></a>
-                                                </div>
-                                            </div>
-                                            <div id="feeds-box" role="tabpanel" class="collapse show" style="">
-                                                <div class="feed-box" >
-                                                    <ul class="feed-elements list-unstyled" >
-                                                        <!-- List-->
-                                                        <li class="clearfix"  th:each="stu,v:${studentAndClass.studentList}">
-                                                            <div class="feed d-flex justify-content-between" >
-                                                                <div class="feed-body d-flex justify-content-between"><a th:href="@{weeklyShowFull(stuName=${stu.stuName})}" class="feed-profile" th:text="${v.count}"></a>
-                                                                    <div class="content"><strong th:text="${stu.stuName}"></strong>
-                                                                        <div class="full-date"><small th:text="${stu.stuSex}"></small></div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="date"><small th:text="${studentAndClass.cName}"></small></div>
-                                                                <div class="date"><small th:text="${studentAndClass.tName}"></small></div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                        <div class="card-body">
+                            <form class="form-horizontal" action="/HeadTeacher/headTeacherSaveStudent" method="post" style="">
+                                <!--                                序号-->
+                                <div class="form-group row">
+                                    <label class="col-sm-2 form-control-label" >序号</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" th:value="${var.count}" name="wkId" readonly>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
+                                <!--                                姓名-->
+                                <div class="line"></div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 form-control-label" >姓名</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="stuName" th:value="${weekly.getStuName()}" readonly>
+                                    </div>
+                                </div>
+                                <!--                                题目-->
+                                <div class="line"></div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 form-control-label" >题目</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="title" th:value="${weekly.getTitle()}" readonly>
+                                    </div>
+                                </div>
+<!--                                文本-->
+                                <div class="line"></div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 form-control-label" >周报内容</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" name="text" th:text="${weekly.getText()}"></textarea>
+                                    </div>
+                                </div>
+<!--                                成绩-->
+                                <div class="line"></div>
+                                <h4 th:text="时间+${weekly.getWeekDate()}"></h4>
+
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

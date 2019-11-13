@@ -3,6 +3,7 @@ package com.qf.Controller;
 import com.qf.pojo.MyClass;
 import com.qf.pojo.Student;
 import com.qf.pojo.StudentAndClass;
+import com.qf.pojo.Weekly;
 import com.qf.service.HeadTeacherService;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
@@ -40,7 +41,10 @@ public String importExcle(){
     public String register(){
         return "register";
     }
-
+    @RequestMapping("forms")
+    public String forms(){
+        return "forms";
+    }
     @RequestMapping("tables")
     public String tables(){
         return "tables";
@@ -213,7 +217,6 @@ public String importExcle(){
                 StudentList.add(student);
             }
             for (Student student : StudentList) {
-//                今天从写一个mapper开始写添加学生数据,注意参数里获取cid,根据班级导入学生
                     headTeacherService.addStudent(student);
             }
 
@@ -221,7 +224,15 @@ public String importExcle(){
             e.printStackTrace();
         }
         return "<script>alert('导入成功');window.location.href='/HeadTeacher/headTeacherStudentShow';</script>";
-
+    }
+    //周报查看
+    @RequestMapping("weeklyShowFull")
+    public String weeklyShowFull(String stuName, Model model){
+        List<Weekly> weeklyList = headTeacherService.getWeeklyByStuName(stuName);
+        System.out.println("weeklyList"+weeklyList);
+        model.addAttribute("weeklyList",weeklyList);
+        return "headTeacherWeeklyShowFull";
 
     }
+
 }
