@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qf.mapper.LoginMapper">
+    <select id="getUpwdByUserName" resultType="string">
+        select password from user where userName=#{userName}
+    </select>
+    <select id="getRolenameByUserName" resultType="string">
+        select role from user where userName=#{userName}
+    </select>
+    <update id="updatePassword" parameterType="string">
+        update user set password=#{arg0} where userName=#{arg1}
+    </update>
+</mapper>
