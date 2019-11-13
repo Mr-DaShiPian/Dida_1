@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+
+</head>
+<script th:src="@{/js/jquery-3.4.1.js}"></script>
+<body>
+<table>
+
+    <tr>
+        <th>序号</th>
+        <th>学生姓名</th>
+        <th>题目</th>
+        <th>提交日期</th>
+        <th>周报内容</th>
+        <th>分数</th>
+
+    </tr>
+
+    <tr th:id="tr+${weekly.wkId}" th:each="weekly,var:${pageInfo.list}">
+        <td th:text="${var.count}"></td>
+        <td th:text="${weekly.wkId}"></td>
+        <td th:text="${weekly.stuName}"></td>
+        <td th:text="${weekly.title}"></td>
+       <td th:text="${weekly.weekDate}"></td>
+        <td th:text="${weekly.text}"></td>
+
+
+        <td>
+
+            <form th:action="lectureweeklyscore" method="post">
+
+                <input type="hidden" name="wkId" th:value="${weekly.wkId}"/>
+                <input type="text" name="score" th:value="${weekly.score}" />
+                <input type="submit" value="打分" />
+            </form>
+        </td>
+
+
+
+    </tr>
+    </table>
+<a th:href="@{lectureweekly(pageNum=1)}" th:text="首页"></a>
+<span th:if="${!pageInfo.hasPreviousPage}">上一页</span>
+<a th:if="${pageInfo.hasPreviousPage}" th:href="@{lectureweekly(pageNum=${pageInfo.prePage})}" th:text="上一页"></a>
+<!--显示所有页码，navigatepageNums表示所有页码的数组集合-->
+<span th:each="i: ${pageInfo.navigatepageNums}">
+        <a th:href="@{lectureweekly(pageNum=${i})}" th:text="${i}"></a>
+</span>
+<a th:if="${pageInfo.hasNextPage}" th:href="@{lectureweekly(pageNum=${pageInfo.nextPage})}" th:text="下一页"></a>
+<span th:if="${!pageInfo.hasNextPage}">下一页</span>
+<a th:href="@{lectureweekly(pageNum=${pageInfo.lastPage})}" th:text="尾页"></a>
+
+
+</body>
+</html>

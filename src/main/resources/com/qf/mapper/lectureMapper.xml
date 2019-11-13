@@ -8,4 +8,27 @@
     <select id="getStudentList" resultType="student">
         select * from student
     </select>
+    <select id="getWeeklyList" resultType="weekly">
+       select * from weekly
+</select>
+    <!--周报打分-->
+    <update id="updatelectureweeklyscore" parameterType="int">
+        update weekly set score=#{arg1} where wkId=#{param1}
+    </update>
+    <!--周报学生-->
+    <select id="getWeeklyListchart" resultType="weekly">
+        select stuName from weekly group by stuName
+    </select>
+    <!--走势图-->
+    <select id="StudentChart" parameterType="java.lang.String" resultType="int">
+        select score from weekly WHERE stuName=#{stuName}
+    </select>
+    <select id="ClassChart" resultType="score">
+        select * from score
+    </select>
+
+
+
+
+
 </mapper>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+
+
+
+</head>
+<body>
+<table>
+
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+
+    </tr>
+    <tr th:each="weekly,var:${studentnameList}">
+        <td th:text="${var.count}"></td>
+        <td th:text="${weekly.stuName}"></td>
+      <td>
+          <form th:action="studentchart" method="post">
+            <input type="hidden" name="stuName" th:value="${weekly.stuName}"/>
+            <input type="submit" value="查看学生成绩图" />
+        </form>
+      </td>
+    </tr>
+
+</table>
+
+</body>
+</html>
