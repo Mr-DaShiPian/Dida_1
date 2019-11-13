@@ -26,8 +26,20 @@
     <select id="selectRoleList" resultType="user">
         select * from user
     </select>
+    <select id="selectRoles" resultType="user">
+        select role from user;
+    </select>
+    <select id="selectRoleListById" resultType="user">
+        select * from user where userId=#{userId}
+    </select>
     <!--增加角色-->
     <insert id="insertRoleByUser" parameterType="user">
-        insert into user(role) value (#{role}) where id=#{id}
+        insert into user(role) value (#{role})
     </insert>
+    <update id="updateRoleById" parameterType="user">
+        update user set role=#{role} where userId=#{userId}
+    </update>
+    <delete id="deleteRole" parameterType="int">
+        delete from user where userId=#{userId}
+    </delete>
 </mapper>
