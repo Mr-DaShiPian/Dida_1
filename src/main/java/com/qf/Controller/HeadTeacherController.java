@@ -85,6 +85,14 @@ public String importExcle(){
         model.addAttribute("myClassByCid",myClassByCid);
         return "headTeacherModifyStudent";
     }
+    //周报查看
+    @RequestMapping("weeklyShowFull")
+    public String weeklyShowFull(String stuName, Model model){
+        List<Weekly> weeklyList = headTeacherService.getWeeklyByStuName(stuName);
+        System.out.println("weeklyList"+weeklyList);
+        model.addAttribute("weeklyList",weeklyList);
+        return "headTeacherWeeklyShowFull";
+    }
 //    从编辑页面传过来的数据进行保存
     @RequestMapping("headTeacherSaveStudent")
     public String headTeacherSaveStudent(Student student, RedirectAttributes redirectAttributes){
@@ -224,15 +232,6 @@ public String importExcle(){
             e.printStackTrace();
         }
         return "<script>alert('导入成功');window.location.href='/HeadTeacher/headTeacherStudentShow';</script>";
-    }
-    //周报查看
-    @RequestMapping("weeklyShowFull")
-    public String weeklyShowFull(String stuName, Model model){
-        List<Weekly> weeklyList = headTeacherService.getWeeklyByStuName(stuName);
-        System.out.println("weeklyList"+weeklyList);
-        model.addAttribute("weeklyList",weeklyList);
-        return "headTeacherWeeklyShowFull";
-
     }
 
 }
