@@ -60,7 +60,6 @@ public String importExcle(){
     public String weeklyShow(Model model){
         List<StudentAndClass> studentAndClass = headTeacherService.getStudentAndClass();
         model.addAttribute("studentAndClass",studentAndClass);
-        System.out.println(studentAndClass.toString());
         return "headTeacherWeeklyShow";
     }
    @RequestMapping("headTeacherStudentShow")
@@ -70,6 +69,7 @@ public String importExcle(){
        model.addAttribute("studentAndClass",studentAndClass);
        return "StudentMessageManager";
    }
+   //跳转到管理学生页面
     @RequestMapping("headTeacherModifyStudent")
     public String headTeacherModifyStudent(String  stuName,Model model){
     //查到当前修改学生的信息
@@ -95,7 +95,6 @@ public String importExcle(){
     @RequestMapping("headTeacherDeleteStudent")
     @ResponseBody
     public String headTeacherDeleteStudent(int stuId){
-        System.out.println(stuId);
         int i = headTeacherService.deleteStudent(stuId);
         if(i > 0){
             return "success";
@@ -177,7 +176,7 @@ public String importExcle(){
     //处理文件上传
     @ResponseBody//返回json数据
     @RequestMapping("excelImport")
-    public String excelImport(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+    public String excelImport(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request) {
         String contentType = file.getContentType();
         String fileName = file.getOriginalFilename();
         if (file.isEmpty()) {
@@ -221,7 +220,7 @@ public String importExcle(){
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "<script>alert('导入成功');</script>";
+        return "<script>alert('导入成功');window.location.href='/HeadTeacher/headTeacherStudentShow';</script>";
 
 
     }

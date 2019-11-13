@@ -5,16 +5,11 @@ spring:
     username: root
     password: 123
     type: com.mchange.v2.c3p0.ComboPooledDataSource
-
   http:
     encoding:
       charset: UTF-8
       force: true
       enabled: true
-      force-response: true
-#  servlet:
-#    multipart:
-#      enabled: false
 mybatis:
   type-aliases-package: com.qf.pojo
 pagehelper:
