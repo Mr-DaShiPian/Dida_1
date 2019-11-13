@@ -22,9 +22,10 @@
 </head>
 <body>
 <a th:href="addWeekly" th:text="新建周报"></a>
+<a th:href="homePage">返回主页</a>
 <p></p>
 
-<table th:width="900px" style="text-align: center">
+<table th:width="900px" style="text-align: center;margin:150px 100px">
     <caption align="top" >我的周报</caption>
     <tr>
         <th>序号</th>
@@ -57,7 +58,7 @@
         </td>
     </tr>
 </table>
-<div style="width: 900px" align="center">
+<div style="width: 900px;margin:150px 100px" align="center">
 <a th:href="@{studentWeekly(startPage=${wkPageInfo.firstPage})}" th:text="首页"></a>
 <a th:href="@{studentWeekly(startPage=${wkPageInfo.prePage})}"
    th:if="${wkPageInfo.isHasPreviousPage()}" th:text="上一页">

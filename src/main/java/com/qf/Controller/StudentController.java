@@ -36,7 +36,9 @@ public class StudentController {
     @RequestMapping("homePage")
     public String homePage(HttpServletRequest request) {
         //仅测试用，正式版要删除
+        if (request.getSession().getAttribute("userName")==null){
         request.getSession().setAttribute("userName", "wangdabian");
+        }
         return "homePage";
     }
 

@@ -5,4 +5,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.qf.mapper.BoosMapper">
+    <update id="updateUserByName" parameterType="java.lang.String">
+        update user set password=#{arg1} where userName=#{arg0}
+    </update>
 </mapper>
