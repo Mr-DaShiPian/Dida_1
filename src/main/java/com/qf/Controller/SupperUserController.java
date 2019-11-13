@@ -4,6 +4,7 @@ import com.qf.pojo.MyClass;
 import com.qf.pojo.User;
 import com.qf.service.SupperUserService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,14 +41,16 @@ public class SupperUserController {
     }
     //展示课程
     @RequestMapping("seeClass")
-    public String seeClass(Model model){
+    public String seeClass(Model model,String name){
         List<MyClass> classList = supperUserService.selectClass();
         model.addAttribute("classList",classList);
         //查询到的角色信息
         List<User> roleList = supperUserService.selectRoleList();
         model.addAttribute("roleList",roleList);
         //查询到的员工信息
-        List<User> staffList = supperUserService.selectStaff();
+        String role = "'学生'";
+        User user = new User(name,role);
+        List<User> staffList = supperUserService.selectStaffByUname(user);
         model.addAttribute("staffList",staffList);
         return "supperClassPage";
     }
@@ -57,7 +60,6 @@ public class SupperUserController {
     }
     @RequestMapping("addClass")
     public String addClass(String cName,String tName){
-        System.out.println(cName);
         MyClass myClass = new MyClass(cName,tName);
         int i = supperUserService.insertClass(myClass);
         if(i>0){
@@ -162,4 +164,30 @@ public class SupperUserController {
         }
         return "addStaff";
     }
+    //修改
+    @RequestMapping("editStaff")
+    public String editStaff(int userId,Model model){
+        List<User> staffList = supperUserService.selectStaffByUserId(userId);
+        model.addAttribute("userId",userId);
+        model.addAttribute("staffList",staffList);
+        return "supperModifyStaff";
+    }
+
+    @RequestMapping("editSaveStaff")
+    public String saveStaff(int userId,String name,String role){
+        User user = new User(userId,name,role);
+        int i = supperUserService.updateStaff(user);
+        if(i>0){
+            return "redirect:selectselectClass";
+        }
+        return "redirect:editStaff";
+    }
+    //搜索员工
+//    @RequestMapping("searchStaff")
+//    public String searchStaff(String name,Model model){
+//        List<User> staffLikeList = supperUserService.selectStaffByUname(name);
+//        model.addAttribute("staffLikeList",staffLikeList);
+//        return "";
+//    }
+
 }

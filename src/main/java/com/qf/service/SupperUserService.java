@@ -35,5 +35,10 @@ public interface SupperUserService {
     public List<User> selectStaff();
     //增加员工
     public int insertStaff(User user);
-
+    //根据id修改员工信息
+    public int updateStaff(User user);
+    //根据id查询员工信息
+    public List<User> selectStaffByUserId(int userId);
+    //根据名字查询员工信息
+    public List<User> selectStaffByUname(User user);
 }

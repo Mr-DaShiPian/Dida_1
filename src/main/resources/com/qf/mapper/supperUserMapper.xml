@@ -49,4 +49,22 @@
     <insert id="insertStaff" parameterType="user">
         insert into user(name,role) values (#{name},#{role})
     </insert>
+    <update id="updateStaff" parameterType="int">
+        update user set name=#{name},role=#{role} where userId=#{userId}
+    </update>
+    <select id="selectStaffByUserId" resultType="user">
+        select * from user where userId=#{userId}
+    </select>
+    <!--根据姓名查询员工信息-->
+    <select id="selectStaffByUname" resultType="user" parameterType="user">
+        select * from user
+        <where>
+            <if test="role!=null">
+                role!=${role}
+            </if>
+            <if test="name!=null">
+                and name=#{name}
+            </if>
+        </where>
+    </select>
 </mapper>
