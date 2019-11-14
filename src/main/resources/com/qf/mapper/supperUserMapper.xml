@@ -67,4 +67,11 @@
             </if>
         </where>
     </select>
+    <!--班级管理-->
+    <select id="selectClassByCid" resultType="myClass">
+        select * from myclass
+    </select>
+    <insert id="insertClass2" parameterType="myClass">
+        insert into myclass(cid,cName,tName,bName) value (#{cid},#{cName},#{tName},#{bName})
+    </insert>
 </mapper>

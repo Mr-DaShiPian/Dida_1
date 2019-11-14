@@ -25,10 +25,10 @@ public class SupperUserController {
     public void setSupperUserService(SupperUserService supperUserService) {
         this.supperUserService = supperUserService;
     }
-    //    @RequestMapping("testHtml")
-//    public String test(){
-//        return "forms";
-//    }
+//        @RequestMapping("testHtml")
+//        public String test(){
+//        return "superIncreaseclass";
+//   }
     /**
      * 课程管理,从主页跳转
      * 其他页面跳转的 链接 : /SupperUser/selectClass
@@ -52,6 +52,9 @@ public class SupperUserController {
         User user = new User(name,role);
         List<User> staffList = supperUserService.selectStaffByUname(user);
         model.addAttribute("staffList",staffList);
+        //查询到的班级信息
+        List<MyClass> classList1 = supperUserService.selectClassByCid();
+        model.addAttribute("classList1",classList1);
         return "supperClassPage";
     }
     @RequestMapping("saveClass")
@@ -189,5 +192,18 @@ public class SupperUserController {
 //        model.addAttribute("staffLikeList",staffLikeList);
 //        return "";
 //    }
-
+    //班级管理
+    @RequestMapping("Increaseclass")
+    public String Increaseclass(){
+        return "superIncreaseclass";
+    }
+    @RequestMapping("saveIncreaseclass")
+    public String saveIncreaseclass(String cid,String cName,String tName,String bName){
+        MyClass myClass = new MyClass(cid,cName,tName,bName);
+        int i = supperUserService.insertClass2(myClass);
+        if(i>0){
+            return "redirect:selectClass";
+        }
+        return "superIncreaseclass";
+    }
 }

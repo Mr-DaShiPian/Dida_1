@@ -46,5 +46,9 @@ public interface SupperUserMapper {
     public List<User> selectStaffByUserId(int userId);
     //根据名字查询员工信息
     public List<User> selectStaffByUname(User user);
-
+    //班级管理
+    //查看所有的班级
+    public List<MyClass> selectClassByCid();
+    //增加班级
+    public int insertClass2(MyClass myClass);
 }
