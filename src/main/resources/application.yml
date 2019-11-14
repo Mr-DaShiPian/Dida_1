@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://10.30.155.10:3306/dida?characterEncoding=utf8&serverTimezone=UTC
+    url: jdbc:mysql://10.30.155.10:3306/dida?characterEncoding=utf8&serverTimezone=UTC&nullCatalogMeansCurrent=true
     username: root
     password: 123
     type: com.mchange.v2.c3p0.ComboPooledDataSource
@@ -13,6 +13,7 @@ spring:
   activiti:
     database-schema-update: true
     check-process-definitions: true
+    process-definition-location-prefix: classpath*:/processes/
 mybatis:
   type-aliases-package: com.qf.pojo
 pagehelper:

@@ -1,5 +1,7 @@
 package com.qf.mapper;
 
+import com.qf.pojo.Leaves;
+import com.qf.pojo.MyClass;
 import com.qf.pojo.Student;
 import com.qf.pojo.Weekly;
 
@@ -22,4 +24,10 @@ public interface StudentMapper {
     public int delWeeklyById(int id);
     //新建周报
     public int addWeekly(Weekly weekly);
+    //得到校长姓名
+    public String getboosByRole();
+    //添加学生假条
+    public int addLeave(Leaves leaves);
+    //通过cid查班级表
+    public MyClass selMyClassByCid(String cid);
 }
