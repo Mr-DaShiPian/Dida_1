@@ -27,7 +27,7 @@ public class SupperUserController {
     }
 //        @RequestMapping("testHtml")
 //        public String test(){
-//        return "superIncreaseclass";
+//        return "SuperuserManager";
 //   }
     /**
      * 课程管理,从主页跳转
@@ -224,5 +224,34 @@ public class SupperUserController {
             return "redirect:selectClass";
         }
         return "redirect:AssignTeacher";
+    }
+    //用户管理
+    @RequestMapping("usermanager")
+    public String usermanager(String userName,Model model){
+        if(userName!=null){
+            List<User> userList = supperUserService.seleuserManagerByUname(userName);
+            model.addAttribute("userList",userList);
+        }else {
+            List<User> userList = supperUserService.seleuserManager();
+            model.addAttribute("userList",userList);
+        }
+        return "superUserdisplay";
+    }
+    //查看用户
+    //增加用户
+    @RequestMapping("addUserManager")
+    public String addUserManager(){
+        return "superUserManager";
+    }
+    @RequestMapping("saveUserManager")
+    public String saveUserManager(String userName,String stuName,int stuAge,String stuSex,String stuBirthday,String stuTel,String cid){
+        System.out.println(userName);
+        System.out.println(stuName);
+        System.out.println(stuAge);
+        System.out.println(stuSex);
+        System.out.println(stuBirthday);
+        System.out.println(stuTel);
+        System.out.println(cid);
+        return "";
     }
 }

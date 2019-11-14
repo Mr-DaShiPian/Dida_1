@@ -55,4 +55,9 @@ public interface SupperUserMapper {
     public int updateClass2(MyClass myClass);
     //根据cid查询班级
     public List<MyClass> selectClassByCid2(String cid);
+    //用户管理, 查询需求
+    public List<User> seleuserManager();
+    public List<User> seleuserManagerByUname(String userName);
+
+
 }

@@ -82,4 +82,12 @@
     <select id="selectClassByCid2" parameterType="string" resultType="myClass">
         select * from myclass where cid=#{cid}
     </select>
+    <!--用户管理-->
+    <!--带条件的搜索-->
+    <select id="seleuserManager"  resultType="user">
+        select * from user
+    </select>
+    <select id="seleuserManagerByUname" parameterType="string" resultType="user">
+        select * from user where userName=#{userName};
+    </select>
 </mapper>

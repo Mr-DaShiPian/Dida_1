@@ -126,4 +126,15 @@ public class SupperUserServiceImpl implements SupperUserService {
         return supperUserMapper.selectClassByCid2(cid);
     }
 
+    @Override
+    public List<User> seleuserManager() {
+        return supperUserMapper.seleuserManager();
+    }
+
+    @Override
+    public List<User> seleuserManagerByUname(String userName) {
+        return supperUserMapper.seleuserManagerByUname(userName);
+    }
+
+
 }

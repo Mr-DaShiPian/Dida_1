@@ -14,6 +14,11 @@ spring:
     database-schema-update: true
     check-process-definitions: false
     process-definition-location-prefix: classpath*:/processes/
+  mvc:
+    date-format: yyyy-MMM-dd
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
 mybatis:
   type-aliases-package: com.qf.pojo
 pagehelper:
