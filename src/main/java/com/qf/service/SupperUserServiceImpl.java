@@ -116,5 +116,14 @@ public class SupperUserServiceImpl implements SupperUserService {
         return supperUserMapper.insertClass2(myClass);
     }
 
+    @Override
+    public int updateClass2(MyClass myClass) {
+        return supperUserMapper.insertClass2(myClass);
+    }
+
+    @Override
+    public List<MyClass> selectClassByCid2(String cid) {
+        return supperUserMapper.selectClassByCid2(cid);
+    }
 
 }

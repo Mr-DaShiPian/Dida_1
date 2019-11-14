@@ -4,6 +4,13 @@ public class MyClass {
     private int id;
     private String cid;
     private String cName;
+
+    public MyClass(String cid, String tName, String bName) {
+        this.cid = cid;
+        this.tName = tName;
+        this.bName = bName;
+    }
+
     private String tName;
     private String bName;
 
