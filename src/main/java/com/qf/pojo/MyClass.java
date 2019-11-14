@@ -4,9 +4,22 @@ public class MyClass {
     private int id;
     private String cid;
     private String cName;
+
+    public MyClass(String cid, String tName, String bName) {
+        this.cid = cid;
+        this.tName = tName;
+        this.bName = bName;
+    }
+
     private String tName;
     private String bName;
 
+    public MyClass(String cid, String cName, String tName, String bName) {
+        this.cid = cid;
+        this.cName = cName;
+        this.tName = tName;
+        this.bName = bName;
+    }
 
     public int getId() {
         return id;

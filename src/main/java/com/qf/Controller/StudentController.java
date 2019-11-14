@@ -2,11 +2,15 @@ package com.qf.Controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.qf.pojo.Leaves;
+import com.qf.pojo.MyClass;
 import com.qf.pojo.Student;
 import com.qf.pojo.Weekly;
 import com.qf.service.StudentService;
+import org.activiti.engine.*;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("Student")
@@ -33,11 +39,12 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+
     @RequestMapping("homePage")
     public String homePage(HttpServletRequest request) {
         //仅测试用，正式版要删除
-        if (request.getSession().getAttribute("userName")==null){
-        request.getSession().setAttribute("userName", "wangdabian");
+        if (request.getSession().getAttribute("userName") == null) {
+            request.getSession().setAttribute("userName", "wangdabian");
         }
         return "homePage";
     }
@@ -171,5 +178,24 @@ public class StudentController {
         writer.print("<script language=\"javascript\">alert('新建失败！');window.location.href='studentWeekly'</script>");
         writer.close();
         return "studentWeekly";
+    }
+
+    //请假跳转
+    @RequestMapping("studentLeave")
+    public String studentLeave(HttpServletRequest request) {
+        String userName = (String) request.getSession().getAttribute("userName");
+        Student student = studentService.getStudentByUserName(userName);
+        MyClass myClass = studentService.selMyClassByCid(student.getCid());
+        String boosName = studentService.getboosByRole();
+        request.setAttribute("stuName", student.getStuName());
+        request.setAttribute("myClass", myClass);
+        request.setAttribute("boosName", boosName);
+        return "studentLeave";
+    }
+
+    @RequestMapping("saveLeave")
+    public String saveLeave(Leaves leaves) {
+        studentService.addLeave(leaves);
+        return "homePage";
     }
 }

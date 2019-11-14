@@ -6,6 +6,7 @@ import com.qf.pojo.StudentAndClass;
 import com.qf.pojo.Weekly;
 
 import java.util.List;
+import java.util.Map;
 
 public interface HeadTeacherService {
 
@@ -35,4 +36,6 @@ public interface HeadTeacherService {
     public List<Student> getStudentList();
     //添加学生
     public int addStudent(Student student);
+    //根据日期和学生姓名查询每个学生的周报成绩
+    public List<Weekly> getGradeByDate(Map<String,Object> map);
 }

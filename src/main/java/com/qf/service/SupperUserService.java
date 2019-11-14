@@ -41,4 +41,16 @@ public interface SupperUserService {
     public List<User> selectStaffByUserId(int userId);
     //根据名字查询员工信息
     public List<User> selectStaffByUname(User user);
+    //查看所有的班级
+    public List<MyClass> selectClassByCid();
+    //增加班级
+    public int insertClass2(MyClass myClass);
+    //分配讲师和班主任 本质就是修改
+    public int updateClass2(MyClass myClass);
+    //根据cid查询班级
+    public List<MyClass> selectClassByCid2(String cid);
+    //用户管理, 查询需求
+    public List<User> seleuserManager();
+    public List<User> seleuserManagerByUname(String userName);
+
 }

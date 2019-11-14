@@ -6,6 +6,7 @@ import com.qf.pojo.StudentAndClass;
 import com.qf.pojo.Weekly;
 
 import java.util.List;
+import java.util.Map;
 
 public interface HeadTeacherMapper {
 
@@ -35,7 +36,7 @@ public interface HeadTeacherMapper {
     public List<Student> getStudentList();
     //添加学生
     public int addStudent(Student student);
-    //查询本班的某天平均成绩
-    public List<Integer> getGreadByStuNameAndDate(String stuName,String weekDate);
+    //根据日期和学生姓名查询每个学生的周报成绩
+    public List<Weekly> getGradeByDate(Map<String,Object> map);
 
 }

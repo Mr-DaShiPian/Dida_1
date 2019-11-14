@@ -29,4 +29,14 @@
     <insert id="addWeekly" parameterType="weekly">
         insert into weekly(stuName,title,weekDate,text) values (#{stuName},#{title},#{weekDate},#{text})
     </insert>
+
+    <select id="selMyClassByCid" resultType="myClass" parameterType="java.lang.String">
+        select * from  myclass where cid=#{cid}
+    </select>
+    <select id="getboosByRole" resultType="java.lang.String">
+        select name from user where role='校长'
+    </select>
+    <insert id="addLeave" parameterType="leaves">
+        insert into leaves(stuName,startDate,endDate,cause,tName,bName,boos,instanceId) values (#{stuName},#{startDate},#{endDate},#{cause},#{tName},#{bName},#{boos},#{instanceId})
+    </insert>
 </mapper>

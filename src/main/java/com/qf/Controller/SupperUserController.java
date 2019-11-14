@@ -25,10 +25,10 @@ public class SupperUserController {
     public void setSupperUserService(SupperUserService supperUserService) {
         this.supperUserService = supperUserService;
     }
-    //    @RequestMapping("testHtml")
-//    public String test(){
-//        return "forms";
-//    }
+//        @RequestMapping("testHtml")
+//        public String test(){
+//        return "SuperuserManager";
+//   }
     /**
      * 课程管理,从主页跳转
      * 其他页面跳转的 链接 : /SupperUser/selectClass
@@ -52,6 +52,9 @@ public class SupperUserController {
         User user = new User(name,role);
         List<User> staffList = supperUserService.selectStaffByUname(user);
         model.addAttribute("staffList",staffList);
+        //查询到的班级信息
+        List<MyClass> classList1 = supperUserService.selectClassByCid();
+        model.addAttribute("classList1",classList1);
         return "supperClassPage";
     }
     @RequestMapping("saveClass")
@@ -189,5 +192,66 @@ public class SupperUserController {
 //        model.addAttribute("staffLikeList",staffLikeList);
 //        return "";
 //    }
+    //班级管理
+    @RequestMapping("Increaseclass")
+    public String Increaseclass(){
+        return "superIncreaseclass";
+    }
+    //增加班级的方法
+    @RequestMapping("saveIncreaseclass")
+    public String saveIncreaseclass(String cid,String cName,String tName,String bName){
+        MyClass myClass = new MyClass(cid,cName,tName,bName);
+        int i = supperUserService.insertClass2(myClass);
+        if(i>0){
+            return "redirect:selectClass";
+        }
+        return "superIncreaseclass";
+    }
 
+    @RequestMapping("AssignTeacher")
+    public String AssignTeacher(String cid,Model model){
+        List<MyClass> classList = supperUserService.selectClassByCid2(cid);
+        model.addAttribute("cid",cid);
+        model.addAttribute("classList",classList);
+        return "superIncreaseTeacher";
+    }
+
+    @RequestMapping("saveAssignTeacher")
+    public String saveAssignTeacher(String cid,String cName,String tName,String bName){
+        MyClass myClass = new MyClass(cid,cName,tName,bName);
+        int i = supperUserService.updateClass2(myClass);
+        if(i>0){
+            return "redirect:selectClass";
+        }
+        return "redirect:AssignTeacher";
+    }
+    //用户管理
+    @RequestMapping("usermanager")
+    public String usermanager(String userName,Model model){
+        if(userName!=null){
+            List<User> userList = supperUserService.seleuserManagerByUname(userName);
+            model.addAttribute("userList",userList);
+        }else {
+            List<User> userList = supperUserService.seleuserManager();
+            model.addAttribute("userList",userList);
+        }
+        return "superUserdisplay";
+    }
+    //查看用户
+    //增加用户
+    @RequestMapping("addUserManager")
+    public String addUserManager(){
+        return "superUserManager";
+    }
+    @RequestMapping("saveUserManager")
+    public String saveUserManager(String userName,String stuName,int stuAge,String stuSex,String stuBirthday,String stuTel,String cid){
+        System.out.println(userName);
+        System.out.println(stuName);
+        System.out.println(stuAge);
+        System.out.println(stuSex);
+        System.out.println(stuBirthday);
+        System.out.println(stuTel);
+        System.out.println(cid);
+        return "";
+    }
 }

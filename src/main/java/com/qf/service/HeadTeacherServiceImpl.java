@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class HeadTeacherServiceImpl implements HeadTeacherService{
     @Autowired
@@ -75,6 +77,11 @@ public class HeadTeacherServiceImpl implements HeadTeacherService{
 
     public int addStudent(Student student){
         return headTeacherMapper.addStudent(student);
+    }
+
+    @Override
+    public List<Weekly> getGradeByDate(Map<String,Object> map) {
+        return headTeacherMapper.getGradeByDate(map);
     }
 
 }
