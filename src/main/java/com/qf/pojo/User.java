@@ -72,7 +72,13 @@ public class User {
         this.role = role;
     }
 
-    public User(int userId,  String name,String role) {
+    public User(String userName, String role, String name) {
+        this.userName = userName;
+        this.role = role;
+        this.name = name;
+    }
+
+    public User(int userId, String name, String role) {
         this.userId = userId;
         this.name = name;
         this.role = role;

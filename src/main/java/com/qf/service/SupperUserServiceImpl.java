@@ -136,5 +136,15 @@ public class SupperUserServiceImpl implements SupperUserService {
         return supperUserMapper.seleuserManagerByUname(userName);
     }
 
+    @Override
+    public int insertManager(User user) {
+        return supperUserMapper.insertManager(user);
+    }
+
+    @Override
+    public int updateManager(String password,String userName) {
+        return supperUserMapper.updateManager(password,userName);
+    }
+
 
 }
