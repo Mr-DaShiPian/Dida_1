@@ -12,6 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("login")
 public class LoginController {
@@ -51,11 +54,25 @@ public class LoginController {
                 //添加到session里面
                 Session session = subject.getSession();
                 session.setAttribute("userName",userName);
-                return "redirect:/HeadTeacher/weeklyShow";
+                return "redirect:homePage";
             }
         }catch (Exception e){
             e.printStackTrace();
         }
+        return "redirect:loginPage";
+    }
+    @RequestMapping("homePage")
+    public String homePage(HttpServletRequest request) {
+        //仅测试用，正式版要删除
+        if (request.getSession().getAttribute("userName") == null) {
+            request.getSession().setAttribute("userName", "wangdabian");
+        }
+        return "homePage";
+    }
+    @RequestMapping("logOut")
+    public String logOut(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
         return "redirect:loginPage";
     }
 

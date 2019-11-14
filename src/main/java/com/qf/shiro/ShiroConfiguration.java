@@ -25,17 +25,18 @@ public class ShiroConfiguration {
         map.put("/login/loginPage","anon");
         map.put("/login/login","anon");
         //你们的过滤器我给注释掉了,用啥解锁啥
-//        map.put("/HeadTeacher/**","authc");
+        map.put("/login/homePage","authc");
+        map.put("/HeadTeacher/**","authc");
 //        map.put("/Boos/**","authc");
 //        map.put("/Lecture/**","authc");
-//        map.put("/Student/**","authc");
+        map.put("/Student/**","authc");
         //最后整合用↓
 //      map.put("/**/**","authc");
         //权限,现在你们还不急着用这个
-//        map.put("HeadTeacher/*","roles[班主任]");
+        map.put("HeadTeacher/*","roles[班主任]");
 //        map.put("Boos/*","roles[校长]");
 //        map.put("Lecture/*","roles[讲师]");
-//        map.put("Student/*","roles[学生]");
+        map.put("Student/*","roles[学生]");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
 }
