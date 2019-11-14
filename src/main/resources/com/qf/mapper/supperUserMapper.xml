@@ -71,7 +71,15 @@
     <select id="selectClassByCid" resultType="myClass">
         select * from myclass
     </select>
+
     <insert id="insertClass2" parameterType="myClass">
         insert into myclass(cid,cName,tName,bName) value (#{cid},#{cName},#{tName},#{bName})
     </insert>
+    <!--修改讲师和班主任根据班级id cid-->
+    <update id="updateClass2" parameterType="myClass">
+        update myclass set cName=#{cName},tName=#{tname},bName=#{bName} where cid=#{cid}
+    </update>
+    <select id="selectClassByCid2" parameterType="string" resultType="myClass">
+        select * from myclass where cid=#{cid}
+    </select>
 </mapper>

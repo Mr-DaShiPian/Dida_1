@@ -197,6 +197,7 @@ public class SupperUserController {
     public String Increaseclass(){
         return "superIncreaseclass";
     }
+    //增加班级的方法
     @RequestMapping("saveIncreaseclass")
     public String saveIncreaseclass(String cid,String cName,String tName,String bName){
         MyClass myClass = new MyClass(cid,cName,tName,bName);
@@ -205,5 +206,23 @@ public class SupperUserController {
             return "redirect:selectClass";
         }
         return "superIncreaseclass";
+    }
+
+    @RequestMapping("AssignTeacher")
+    public String AssignTeacher(String cid,Model model){
+        List<MyClass> classList = supperUserService.selectClassByCid2(cid);
+        model.addAttribute("cid",cid);
+        model.addAttribute("classList",classList);
+        return "superIncreaseTeacher";
+    }
+
+    @RequestMapping("saveAssignTeacher")
+    public String saveAssignTeacher(String cid,String cName,String tName,String bName){
+        MyClass myClass = new MyClass(cid,cName,tName,bName);
+        int i = supperUserService.updateClass2(myClass);
+        if(i>0){
+            return "redirect:selectClass";
+        }
+        return "redirect:AssignTeacher";
     }
 }

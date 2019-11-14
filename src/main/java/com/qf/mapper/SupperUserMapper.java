@@ -51,4 +51,8 @@ public interface SupperUserMapper {
     public List<MyClass> selectClassByCid();
     //增加班级
     public int insertClass2(MyClass myClass);
+    //分配讲师和班主任 本质就是修改
+    public int updateClass2(MyClass myClass);
+    //根据cid查询班级
+    public List<MyClass> selectClassByCid2(String cid);
 }
