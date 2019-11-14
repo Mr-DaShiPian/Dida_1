@@ -29,6 +29,22 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
+<script>
+    option = {
+        xAxis: {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'line'
+        }]
+    };
+
+</script>
 <body>
 <!-- Side Navbar -->
 <nav class="side-navbar">
@@ -75,6 +91,7 @@
         </div>
     </div>
 </nav>
+
 <div class="page">
     <!-- navbar-->
     <header class="header">
@@ -170,7 +187,22 @@
                         <section class="dashboard-header section-padding" >
                             <div class="container-fluid" >
                                 <div class="row d-flex align-items-md-stretch" >
-                                    <div class="col-lg-4 col-md-6" >
+                                    <div class="col-lg-12 col-md-6" >
+                                        <form action="studentGradeChart" method="get">
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 form-control-label">请选择阶段:</label>
+                                                <div class="col-sm-10 mb-3">
+                                                    <input name="cid" th:value="${studentAndClass.cid}" type="hidden" >
+                                                    <select name="weekDate" class="form-control">
+                                                        <option value=1>第一阶段</option>
+                                                        <option value=2>第二阶段</option>
+                                                        <option value=3>第三阶段</option>
+                                                        <option value=4>第四阶段</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <input type="submit" class="btn btn-primary"  th:value="查看本阶段成绩报表"></input>
+                                        </form>
                                         <!-- Daily Feed Widget-->
                                         <div id="daily-feeds" class="card updates daily-feeds" >
                                             <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center" >
@@ -179,19 +211,24 @@
                                                     <a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box" class=""><i class="fa fa-angle-down"></i></a>
                                                 </div>
                                             </div>
+
                                             <div id="feeds-box" role="tabpanel" class="collapse show" style="">
                                                 <div class="feed-box" >
                                                     <ul class="feed-elements list-unstyled" >
+                                                        <li class="clearfix"></li>
                                                         <!-- List-->
                                                         <li class="clearfix"  th:each="stu,v:${studentAndClass.studentList}">
                                                             <div class="feed d-flex justify-content-between" >
-                                                                <div class="feed-body d-flex justify-content-between"><a th:href="@{weeklyShowFull(stuName=${stu.stuName})}" class="feed-profile" th:text="${v.count}"></a>
-                                                                    <div class="content"><strong th:text="${stu.stuName}"></strong>
-                                                                        <div class="full-date"><small th:text="${stu.stuSex}"></small></div>
-                                                                    </div>
+                                                                <div class="feed-body d-flex justify-content-between"></strong><a th:href="@{weeklyShowFull(stuName=${stu.stuName})}" class="feed-profile" th:text="${v.count}"></a>
+                                                                    <div class="content"><strong th:text="${stu.stuName}"></strong></div>
+                                                                    <div class="content"><strong th:text="${stu.stuSex}"></strong></div>
                                                                 </div>
                                                                 <div class="date"><small th:text="${studentAndClass.cName}"></small></div>
                                                                 <div class="date"><small th:text="${studentAndClass.tName}"></small></div>
+                                                                <div class="date"><a type="button" th:href="@{weeklyShowFull(stuName=${stu.stuName})}" class="btn btn-primary" th:text="查看周报"></a>
+                                                                </div>
+                                                                <div class="date"><a type="button" th:href="@{studentGradeChart(stuName=${stu.stuName})}" class="btn btn-primary" th:text="查看各阶段成绩"></a>
+                                                                </div>
                                                             </div>
                                                         </li>
                                                     </ul>

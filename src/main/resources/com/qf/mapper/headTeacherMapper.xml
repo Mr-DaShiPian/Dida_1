@@ -72,6 +72,13 @@
     <insert id="addStudent" parameterType="student">
         insert into student(stuName,userName,stuAge,stuSex,stuBirthday,stuTel,cid) values (#{stuName},#{userName},#{stuAge},#{stuSex},#{stuBirthday},#{stuTel},#{cid})
     </insert>
+    <select id="getGradeByDate" resultType="weekly">
+        select * from weekly where weekDate=#{weekDate} and stuName in
+        <foreach collection="studentByCidList" item="student" open="(" close=")" separator=",">
+             #{student.stuName}
+        </foreach>
+
+    </select>
 
 
 
