@@ -1,8 +1,11 @@
 package com.qf.mapper;
 
 import com.qf.pojo.Score;
+import com.hazelcast.core.LifecycleService;
+import com.qf.pojo.Leaves;
 import com.qf.pojo.Student;
 import com.qf.pojo.Weekly;
+import com.qf.pojo.User;
 
 import java.util.List;
 
@@ -20,4 +23,13 @@ public interface LectureMapper {
     public List<Score> ClassChart(Score score);
     //阶段分层
     public List<Weekly> getWeeklyDate();
+    public List<Student> getSudentList();
+    //////////////
+    public List<Leaves> getLeaveByLecture();
+    public int agreeLeaves(int lid);
+    public String getInstanceId(int lid);
+    public String getboosByRole();
+    public User getUserByUserName(String userName);
+    public int addLeave(Leaves leaves);
+
 }

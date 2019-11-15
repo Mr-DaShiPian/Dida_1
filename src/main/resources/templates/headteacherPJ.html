@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <script th:src="@{/js/jquery-3.4.1.js}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".del").click(function () {
+                var a = $(this).attr("lid");
+                $.get("agreeLeaves",{lid:a},function (data) {
+                    if (data=="ok"){
+                        $("#tr"+a).remove();
+                    }else{
+                        alter("失败!");
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+<a th:href="p">返回</a>
+<p></p>
+<table th:width="1000px" style="text-align: center;margin:150px 100px">
+    <caption align="top" >学生假条</caption>
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>请假时间</th>
+        <th>结束时间</th>
+        <th>原因</th>
+        <th>讲师</th>
+        <th>班主任</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    <tr th:if="${stuLeaves.size()==0}">
+        <td th:colspan="9" style="text-align:center;">
+            <- - 空空如也 - ->
+        </td>
+    </tr>
+    <tr th:id="tr+${stu.lid}" th:if="${stuLeaves.size()!=0}" th:each="stu,var:${stuLeaves}">
+        <td th:text="${var.count}"></td>
+        <td th:text="${stu.stuName}"></td>
+        <td th:text="${stu.startDate}"></td>
+        <td th:text="${stu.endDate}"></td>
+        <td th:text="${stu.cause}"></td>
+        <td th:text="${stu.tName}"></td>
+        <td th:text="${stu.bName}"></td>
+        <td th:text="${stu.status}"></td>
+        <td>
+            <a href="javascript:void(0)" class="del" th:lid="${stu.lid}">同意</a>
+        </td>
+
+    </tr>
+</table>
+</body>
+</html>

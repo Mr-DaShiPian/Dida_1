@@ -1,9 +1,6 @@
 package com.qf.service;
 
-import com.qf.pojo.MyClass;
-import com.qf.pojo.Student;
-import com.qf.pojo.StudentAndClass;
-import com.qf.pojo.Weekly;
+import com.qf.pojo.*;
 
 import java.util.List;
 import java.util.Map;
@@ -38,4 +35,12 @@ public interface HeadTeacherService {
     public int addStudent(Student student);
     //根据日期和学生姓名查询每个学生的周报成绩
     public List<Weekly> getGradeByDate(Map<String,Object> map);
+
+    ////////////////
+    public List<Leaves> getLeaveByLecture();
+    public int agreeLeaves(String instanceId,int lid);
+    public String getInstanceId(int lid);
+    public String getboosByRole();
+    public User getUserByUserName(String userName);
+    public int addLeave(Leaves leaves);
 }

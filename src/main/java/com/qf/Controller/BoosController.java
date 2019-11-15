@@ -1,16 +1,19 @@
 package com.qf.Controller;
 
+import com.qf.pojo.Leaves;
 import com.qf.pojo.User;
 import com.qf.service.BoosService;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @Controller
 @RequestMapping("Boos")
@@ -62,5 +65,19 @@ public class BoosController {
             e.printStackTrace();
         }
         return "homePage";
+    }
+    /////////////////////////
+    @RequestMapping("getLeave")
+    public String getLeave(HttpServletRequest request){
+        List<Leaves> stuLeaves = boosService.getLeaveByLecture();
+        request.setAttribute("stuLeaves",stuLeaves);
+        return "boosPJ";
+    }
+    @RequestMapping("agreeLeaves")
+    @ResponseBody
+    public String agreeLeaves(int lid){
+        String instanceId = boosService.getInstanceId(lid);
+        int i = boosService.agreeLeaves(instanceId,lid);
+        return "ok";
     }
 }

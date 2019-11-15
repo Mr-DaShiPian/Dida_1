@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>教师请假</title>
+</head>
+<body>
+<h4>请假条：</h4>
+<form action="saveLeave" method="post">
+    姓名：<input type="text" th:name="stuName" th:value="${user.name}" readonly><br/>
+    请假时间:<input type="date" th:name="startDate">
+    结束时间:<input type="date" th:name="endDate"><br/>
+    请假原因:<br/>
+    <textarea th:name="cause" style="width: 400px;height: 100px"></textarea><br/>
+    <input type="text" th:name="tName" th:value="职位" hidden>
+    职位:<input type="text" th:name="bName" th:value="${user.role}"><br/>
+    <input type="text" th:name="boos" th:value="${boos}" hidden>
+    <input type="submit">
+</form>
+</body>
+</html>

@@ -194,4 +194,5 @@ public class StudentController {
         studentService.addLeave(leaves);
         return "homePage";
     }
+
 }

@@ -12,6 +12,9 @@ import org.activiti.engine.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,6 +94,19 @@ public class StudentServiceImpl implements StudentService {
         map.put("tName", leaves.gettName());
         map.put("bName", leaves.getbName());
         map.put("boos", leaves.getBoos());
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date start = null;
+        Date end = null;
+        try {
+            start = simpleDateFormat.parse(leaves.getStartDate());
+            end = simpleDateFormat.parse(leaves.getEndDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long daysTime = end.getTime() - start.getTime();
+        int days = (int)daysTime/(24*60*60*1000);
+        map.put("days",Integer.toString(days));
         //发起流程实例
         runtimeService.startProcessInstanceByKey("studentProcess", map);
         String id = taskService.createTaskQuery().taskAssignee(leaves.getStuName()).singleResult().getId();

@@ -35,7 +35,7 @@ public class LoginController {
         String md5Password = DigestUtils.md5DigestAsHex(password.getBytes());
         int i = loginService.updatePassword(md5Password,userName);
         if (i>0){
-            return "redirect:/HeadTeacher/weeklyShow";
+            return "redirect:/login/homePage";
         }
         return "redirect:passwordEdit";
     }

@@ -1,9 +1,6 @@
 package com.qf.Controller;
 
-import com.qf.pojo.MyClass;
-import com.qf.pojo.Student;
-import com.qf.pojo.StudentAndClass;
-import com.qf.pojo.Weekly;
+import com.qf.pojo.*;
 import com.qf.service.HeadTeacherService;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
@@ -347,6 +344,36 @@ public class HeadTeacherController {
             return "headTeacherChart";
         }
         return null;
+    }
+//////
+    @RequestMapping("getLeave")
+    public String getLeave(HttpServletRequest request){
+        List<Leaves> stuLeaves = headTeacherService.getLeaveByLecture();
+        request.setAttribute("stuLeaves",stuLeaves);
+        return "headteacherPJ";
+
+    }
+    @RequestMapping("agreeLeaves")
+    @ResponseBody
+    public String agreeLeaves(int lid){
+        String instanceId = headTeacherService.getInstanceId(lid);
+        int i = headTeacherService.agreeLeaves(instanceId,lid);
+        return "ok";
+    }
+    @RequestMapping("myLeaves")
+    public String myLeaves(HttpServletRequest request){
+        String boosName = headTeacherService.getboosByRole();
+//        String userName = (String) request.getSession().getAttribute("userName");
+        String userName = "banzhuren";
+        User user = headTeacherService.getUserByUserName(userName);
+        request.setAttribute("user",user);
+        request.setAttribute("boos",boosName);
+        return "hTeacherLeave";
+    }
+    @RequestMapping("saveLeave")
+    public String saveLeave(Leaves leaves){
+        headTeacherService.addLeave(leaves);
+        return "homePage";
     }
 
 }

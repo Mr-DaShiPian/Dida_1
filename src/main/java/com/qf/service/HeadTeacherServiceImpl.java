@@ -1,13 +1,15 @@
 package com.qf.service;
 
 import com.qf.mapper.HeadTeacherMapper;
-import com.qf.pojo.MyClass;
-import com.qf.pojo.Student;
-import com.qf.pojo.StudentAndClass;
-import com.qf.pojo.Weekly;
+import com.qf.mapper.LectureMapper;
+import com.qf.pojo.*;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -84,4 +86,55 @@ public class HeadTeacherServiceImpl implements HeadTeacherService{
         return headTeacherMapper.getGradeByDate(map);
     }
 
+
+
+    ////////////////
+    @Autowired
+    private RepositoryService repositoryService;
+    @Autowired
+    private RuntimeService runtimeService;
+    @Autowired
+    private TaskService taskService;
+
+    @Override
+    public List<Leaves> getLeaveByLecture() {
+        return headTeacherMapper.getLeaveByLecture();
+    }
+
+    @Override
+    public int agreeLeaves(String instanceId,int lid) {
+        String id = taskService.createTaskQuery().processInstanceId(instanceId).singleResult().getId();
+        taskService.complete(id);
+        return headTeacherMapper.agreeLeaves(lid);
+    }
+
+    @Override
+    public String getInstanceId(int lid) {
+        return headTeacherMapper.getInstanceId(lid);
+    }
+
+    @Override
+    public String getboosByRole() {
+        return headTeacherMapper.getboosByRole();
+    }
+
+    @Override
+    public User getUserByUserName(String userName) {
+        return headTeacherMapper.getUserByUserName(userName);
+    }
+
+    @Override
+    public int addLeave(Leaves leaves) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("teacher",leaves.getStuName());
+        map.put("boos",leaves.getBoos());
+        //发起流程实例
+        runtimeService.startProcessInstanceByKey("teacherProcess", map);
+        String id = taskService.createTaskQuery().taskAssignee(leaves.getStuName()).singleResult().getId();
+        String instanceId = taskService.createTaskQuery().taskAssignee(leaves.getStuName()).singleResult().getProcessInstanceId();
+        //完成请假任务
+        taskService.complete(id);
+        leaves.setInstanceId(instanceId);
+        return headTeacherMapper.addLeave(leaves);
+    }
 }

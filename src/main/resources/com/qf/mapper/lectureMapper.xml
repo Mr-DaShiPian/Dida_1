@@ -36,4 +36,23 @@
 
 
 
+<!--    ////////////////-->
+    <select id="getLeaveByLecture" resultType="leaves">
+        select * from leaves where status = '已提交'
+     </select>
+    <update id="agreeLeaves" parameterType="int">
+        update leaves set status='讲师过审' where lid=#{lid}
+    </update>
+    <select id="getInstanceId" parameterType="int" resultType="java.lang.String">
+        select instanceId from leaves where lid = #{lid}
+    </select>
+    <select id="getboosByRole" resultType="java.lang.String">
+        select name from user where role='校长'
+    </select>
+    <select id="getUserByUserName" parameterType="java.lang.String" resultType="user">
+        select * from user where userName=#{userName}
+    </select>
+    <insert id="addLeave" parameterType="leaves">
+        insert into leaves(stuName,startDate,endDate,cause,tName,bName,boos,instanceId) values (#{stuName},#{startDate},#{endDate},#{cause},#{tName},#{bName},#{boos},#{instanceId})
+    </insert>
 </mapper>
