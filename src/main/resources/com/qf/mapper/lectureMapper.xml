@@ -23,8 +23,13 @@
     <select id="StudentChart" parameterType="java.lang.String" resultType="int">
         select score from weekly WHERE stuName=#{stuName}
     </select>
+    <!--班级平均分柱状图-->
     <select id="ClassChart" resultType="score">
         select * from score
+    </select>
+    <!--获取日期-->
+    <select id="getWeeklyDate" resultType="weekly">
+        select weekDate from weekly
     </select>
 
 

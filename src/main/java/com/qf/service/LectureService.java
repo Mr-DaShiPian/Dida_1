@@ -16,6 +16,8 @@ public interface LectureService {
     public int updatelectureweeklyscore (int wkId,int score);
     //chart走势图
     public List<Weekly> StudentChart(String stuName);
-
+    //班级平均分柱状图
     public List<Score>  ClassChart(Score score);
+    //阶段分层
+    public List<Weekly> getWeeklyDate();
 }

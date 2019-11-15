@@ -4,14 +4,14 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qf.pojo.Score;
 import com.qf.pojo.Student;
-
 import com.qf.pojo.Weekly;
 import com.qf.service.LectureService;
+import com.qf.service.LoginService;
 import org.apache.poi.hssf.usermodel.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,11 +26,14 @@ import java.util.List;
 public class LectureController {
     @Autowired
     private LectureService lectureService;
+    @Autowired
+    private LoginService loginSerice;
+
 
     //学生信息查看--分页
     @RequestMapping("lectureindex")
     public String index(@RequestParam(defaultValue = "1") int pageNum, Model model) {
-        PageHelper.startPage(pageNum, 5);
+        PageHelper.startPage(pageNum, 10);
         List<Student> studentList = lectureService.getStudentList();
         PageInfo<Student> pageInfo = new PageInfo<Student>(studentList);
         model.addAttribute("pageInfo", pageInfo);
@@ -76,9 +79,9 @@ public class LectureController {
 
     //学生成绩走势图
     @RequestMapping("studentchart")
-    public String echarts(Model model,String stuName) {
+    public String echarts(Model model, String stuName) {
         List<String> names = new ArrayList<String>();
-        List datas = lectureService.StudentChart(stuName );
+        List datas = lectureService.StudentChart(stuName);
         names.add("一回合");
         names.add("二回合");
         names.add("三回合");
@@ -86,25 +89,26 @@ public class LectureController {
         model.addAttribute("datas", datas);
         return "studentchart";
     }
+
     //班级学生成绩柱状图
     @RequestMapping("classchart")
-    public String classecharts(Model model , Score score) {
+    public String classecharts(Model model, Score score) {
         List datas = new ArrayList();
         List<Score> chart = lectureService.ClassChart(score);
         int one = 0;
         int two = 0;
-        int three=0;
+        int three = 0;
         int fore = 0;
-        for (Score i :chart) {
-          one += i.getStageA();
-           two += i.getStageB()/chart.size();
-            three += i.getStageC()/chart.size();
-             fore += i.getStageD()/chart.size();
+        for (Score i : chart) {
+            one += i.getStageA();
+            two += i.getStageB() ;
+            three += i.getStageC();
+            fore += i.getStageD();
         }
-        datas.add(one/chart.size());
-        datas.add(two/chart.size());
-        datas.add(three/chart.size());
-        datas.add(fore/chart.size());
+        datas.add(one / chart.size());
+        datas.add(two / chart.size());
+        datas.add(three / chart.size());
+        datas.add(fore / chart.size());
         List<String> names = new ArrayList<String>();
         names.add("一阶段");
         names.add("二阶段");
@@ -115,27 +119,52 @@ public class LectureController {
         return "classchart";
     }
 
-    //学生信息查看--分页
+    //学生周报信息查看--分页
     @RequestMapping("lectureweekly")
     public String lectureweekly(@RequestParam(defaultValue = "1") int pageNum, Model model) {
         PageHelper.startPage(pageNum, 5);
         List<Weekly> weeklyList = lectureService.getWeeklyList();
         PageInfo<Weekly> pageInfo = new PageInfo<Weekly>(weeklyList);
         model.addAttribute("pageInfo", pageInfo);
+
         return "lectureweekly";
     }
-//修改学生成绩
-    @RequestMapping("lectureweeklyscore")
-    public String lectureweeklyscore(int wkId,int score) {
-        lectureService.updatelectureweeklyscore(wkId,score);
 
-            return "redirect:lectureweekly";
-     }
-     //学生姓名去重周报
+    //修改学生周报成绩
+    @RequestMapping("lectureweeklyscore")
+    public String lectureweeklyscore(int wkId, int score) {
+        lectureService.updatelectureweeklyscore(wkId, score);
+        int w=wkId/5+1;
+        return "redirect:lectureweekly?pageNum="+w;
+    }
+
+    //学生姓名去重周报分析图
     @RequestMapping("lecturestudentchart")
-    public String studentList(Model model){
+    public String studentList(Model model) {
         List<Weekly> studentnameList = lectureService.getWeeklyListchart();
-        model.addAttribute("studentnameList",studentnameList);
+        model.addAttribute("studentnameList", studentnameList);
         return "lecturestudentchart";
     }
+    //修改密码
+    //跳转到修改密码页面
+    @RequestMapping("passwordLecture")
+    public String passwordEdit(Model model){
+        return "passwordEdit";
+    }
+    //保存需要修改的密码
+    @RequestMapping("passwordSave")
+    public String passwordSave(String password,String userName){
+        String md5Password = DigestUtils.md5DigestAsHex(password.getBytes());
+        int i = loginSerice.updatePassword(md5Password,userName);
+        if (i>0){
+            return "redirect:/Lecture/lectureindex";
+        }
+        return "redirect:passwordLecture";
+    }
+    //根据日期分阶段
+    @RequestMapping("getWeeklyDate")
+    public  String getWeeklyDate(Weekly weekly){
+        return "lectureweeklyscore";
+    }
+
 }

@@ -1,6 +1,5 @@
 package com.qf.mapper;
 
-import com.hazelcast.core.LifecycleService;
 import com.qf.pojo.Score;
 import com.qf.pojo.Student;
 import com.qf.pojo.Weekly;
@@ -19,4 +18,6 @@ public interface LectureMapper {
     public List<Weekly> StudentChart(String stuName );
     //成绩柱状图
     public List<Score> ClassChart(Score score);
+    //阶段分层
+    public List<Weekly> getWeeklyDate();
 }

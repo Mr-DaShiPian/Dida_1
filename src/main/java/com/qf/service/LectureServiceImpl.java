@@ -30,4 +30,8 @@ public class LectureServiceImpl implements LectureService {
     @Override
     public List<Score> ClassChart(Score score) { return lectureMapper.ClassChart(score); }
 
+    @Override
+    //阶段分层
+    public List<Weekly> getWeeklyDate(){return lectureMapper.getWeeklyDate();}
+
 }
