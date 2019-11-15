@@ -233,7 +233,7 @@
                                     </span>
                 <span shiro:hasRole="校长">
                                                     <li>   <a th:href="@{/login/passwordEdit}" th:text="修改密码"></a></li>
-                                                    <li>   <a th:href="@{/Boos/getLeave}" th:text="请假审批"></a></li>
+                                                    <li class="active">   <a th:href="@{/Boos/getLeave}" th:text="请假审批"></a></li>
                                                     <li>   <a th:href="@{/HeadTeacher/headTeacherStudentShow}" th:text="成绩查看"></a></li>
 
                                     </span>
@@ -262,7 +262,7 @@
         <div class="container-fluid">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="templates/index.html">Home</a></li>
-                <li class="breadcrumb-item active">学生信息修改       </li>
+                <li class="breadcrumb-item active">请假批准       </li>
             </ul>
         </div>
     </div>
@@ -270,16 +270,16 @@
         <div class="container-fluid">
             <!-- Page Header-->
             <header>
-                <h1 class="h3 display">学生信息修改            </h1>
+                <h1 class="h3 display">请假批准            </h1>
             </header>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
-                            <h4 th:text="信息修改"></h4>
+                            <h4 th:text="请假批准"></h4>
                         </div>
                         <div class="card-body">
-                            <input type=button class="btn btn-primary" value=后退 onclick="window.history.go(-1)">
+                            <input type=button class="btn btn-primary" value=返回 onclick="window.history.go(-1)">
                             <p></p>
                             <table th:width="1000px" style="text-align: center;margin:150px 100px">
                                 <caption align="top">学生假条</caption>
