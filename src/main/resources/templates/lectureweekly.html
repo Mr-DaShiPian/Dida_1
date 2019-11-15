@@ -58,7 +58,7 @@
         <div class="main-menu">
             <h5 class="sidenav-heading">Main</h5>
             <ul id="side-main-menu" class="side-menu list-unstyled">
-                <li class="active"><a th:href="@{/login/homePage}"></i>主页                      </a></li>
+                <li ><a th:href="@{/login/homePage}"></i>主页                      </a></li>
                 <span shiro:hasRole="超管">
                 <li>    <a th:href="@{/SupperUser/seeClass}" th:text="个人资料管理"></a></li>
                      <li>   <a th:href="@{/login/passwordEdit}" th:text="修改密码"></a></li>
@@ -72,7 +72,7 @@
                                     <li>   <a th:href="@{/Lecture/getLeave}" th:text="请假审批"></a></li>
                                     <li>   <a th:href="@{/Lecture/myLeaves}" th:text="个人请假"></a></li>
                                   <li>   <a th:href="@{/login/passwordEdit}" th:text="修改密码"></a></li>
-                                            <li>   <a th:href="@{/Lecture/lectureweekly}" th:text="周报打分"></a></li>
+                                            <li class="active">   <a th:href="@{/Lecture/lectureweekly}" th:text="周报打分"></a></li>
                                                       <li>   <a th:href="@{/Lecture/lecturestudentchart}" th:text="学生成绩分析"></a></li>
                                     <li>   <a th:href="@{/Lecture/lectureindex}" th:text="学生信息表"></a></li>
                                     <li>   <a th:href="@{/Lecture/classchart}" th:text="班级平均分"></a></li>
@@ -117,7 +117,7 @@
                 <li class="breadcrumb-item"><a href="passwordLecture">修改密码</a>
 
                 </li>
-                <li class="breadcrumb-item"><a href="/login/homePage">回到主页</a>
+                <li class="breadcrumb-item"><input type=button class="btn btn-primary" value=后退 onclick="window.history.go(-1)">
             </ul>
         </div>
     </div>

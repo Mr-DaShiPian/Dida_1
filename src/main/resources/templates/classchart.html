@@ -193,7 +193,7 @@
                                             <li>   <a th:href="@{/Lecture/lectureweekly}" th:text="周报打分"></a></li>
                                                       <li>   <a th:href="@{/Lecture/lecturestudentchart}" th:text="学生成绩分析"></a></li>
                                     <li>   <a th:href="@{/Lecture/lectureindex}" th:text="学生信息表"></a></li>
-                                    <li>   <a th:href="@{/Lecture/classchart}" th:text="班级平均分"></a></li>
+                                    <li class="active">   <a th:href="@{/Lecture/classchart}" th:text="班级平均分"></a></li>
                                     </span>
                 <span shiro:hasRole="班主任">
                 <li>   <a th:href="@{/login/passwordEdit}" th:text="修改密码"></a></li>
@@ -252,7 +252,7 @@
                         <div class="card-body">
 
 
-                            <a th:href="lectureindex">回到主页</a>
+                            <input type=button class="btn btn-primary" value=后退 onclick="window.history.go(-1)">
                             <div id="main" style="width: 400px;height: 400px"></div>
 
                             <script th:inline="javascript">
