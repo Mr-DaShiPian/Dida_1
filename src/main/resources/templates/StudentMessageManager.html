@@ -127,7 +127,7 @@
             <!-- Page Header-->
             <header >
                 <h1 class="h3 display" th:text="信息管理">
-                </h1><br/><br/><a type="button" class="btn btn-primary" th:href="@{weeklyShow}" th:text="返回"></a>
+                </h1><br/><br/><input type=button class="btn btn-primary" value=返回 onclick="window.history.go(-1)">
                 <form enctype="multipart/form-data" method="post" action="excelImport">
                     <h4 th:text="导入Excel表格"></h4><input type="file" class="btn btn-outline-primary" name="file"/>
                     <input class="btn btn-outline-primary" type="submit" value="上传"/>
