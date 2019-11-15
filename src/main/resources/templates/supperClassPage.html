@@ -47,9 +47,9 @@
         <div class="main-menu">
             <h5 class="sidenav-heading">Main</h5>
             <ul id="side-main-menu" class="side-menu list-unstyled">
-                <li class="active"><a th:href="@{/login/homePage}"></i>主页                      </a></li>
+                <li ><a th:href="@{/login/homePage}"></i>主页                      </a></li>
                 <span shiro:hasRole="超管">
-                <li>    <a th:href="@{/SupperUser/seeClass}" th:text="个人资料管理"></a></li>
+                <li class="active">    <a th:href="@{/SupperUser/seeClass}" th:text="个人资料管理"></a></li>
                      <li>   <a th:href="@{/login/passwordEdit}" th:text="修改密码"></a></li>
                     </span>
                 <span shiro:hasRole="学生">
