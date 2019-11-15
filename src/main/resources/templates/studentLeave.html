@@ -126,6 +126,7 @@
                         审批讲师:<input class="form-control" type="text" th:name="tName" th:value="${myClass.tName}" readonly>
                         班主任:<input class="form-control" type="text" th:name="bName" th:value="${myClass.bName}" readonly><br/>
                         <input class="form-control" type="text" th:name="boos" th:value="${boosName}" hidden>
+                        <input type="text" th:name="status" th:value="学生提交" hidden>
                         <input class="btn btn-primary" type="submit"> <input type=button class="btn btn-primary" value=后退 onclick="window.history.go(-1)">
 
                     </form>

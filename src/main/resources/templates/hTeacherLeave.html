@@ -205,10 +205,10 @@
                                     </span>
                 <span shiro:hasRole="班主任">
                 <li>   <a th:href="@{/login/passwordEdit}" th:text="修改密码"></a></li>
-                <li>   <a th:href="@{/HeadTeacher/weeklyShow}" th:text="学生周报查看"></a></li>
-                <li>   <a th:href="@{/HeadTeacher/headTeacherStudentShow}" th:text="学生管理及成绩查看"></a></li>
+                <li>   <a th:href="@{/HeadTeacher/weeklyShow}" th:text="学生周报查看及成绩查看"></a></li>
+                <li>   <a th:href="@{/HeadTeacher/headTeacherStudentShow}" th:text="学生管理"></a></li>
                 <li>   <a th:href="@{/HeadTeacher/getLeave}" th:text="请假审批"></a></li>
-                <li>   <a th:href="@{/HeadTeacher/myLeaves}" th:text="个人请假"></a></li>
+                <li class="active">   <a th:href="@{/HeadTeacher/myLeaves}" th:text="个人请假"></a></li>
                                     </span>
                 <span shiro:hasRole="校长">
                                                     <li>   <a th:href="@{/login/passwordEdit}" th:text="修改密码"></a></li>
