@@ -63,4 +63,7 @@ public interface SupperUserMapper {
     public int insertManager(User user);
     //
     public int updateManager(@Param(value = "password") String password, @Param(value = "userName") String userName);
+    //用户表的删除
+    public int deleteManager(int userId);
+
 }

@@ -56,4 +56,6 @@ public interface SupperUserService {
     public int insertManager(User user);
     //
     public int updateManager(String password,String userName);
+    //用户表的删除
+    public int deleteManager(int userId);
 }

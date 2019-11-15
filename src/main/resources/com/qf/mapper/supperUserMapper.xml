@@ -96,4 +96,7 @@
     <update id="updateManager" parameterType="user">
         update user set password=#{password} where userName=#{userName}
     </update>
+    <delete id="deleteManager" parameterType="int">
+        delete from user where userId=#{userId}
+    </delete>
 </mapper>
