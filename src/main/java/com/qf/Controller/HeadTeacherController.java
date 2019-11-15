@@ -119,6 +119,7 @@ public class HeadTeacherController {
     @ResponseBody
     public String headTeacherDeleteStudent(int stuId) {
         int i = headTeacherService.deleteStudent(stuId);
+        System.out.println(i);
         if (i > 0) {
             return "success";
         }

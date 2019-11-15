@@ -7,7 +7,6 @@ import com.qf.pojo.MyClass;
 import com.qf.pojo.Student;
 import com.qf.pojo.Weekly;
 import com.qf.service.StudentService;
-import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,14 +35,7 @@ public class StudentController {
     }
 
 
-    @RequestMapping("homePage")
-    public String homePage(HttpServletRequest request) {
-        //仅测试用，正式版要删除
-        if (request.getSession().getAttribute("userName") == null) {
-            request.getSession().setAttribute("userName", "wangdabian");
-        }
-        return "homePage";
-    }
+
 
     //个人资料管理
     @RequestMapping("studentInfor")
@@ -78,35 +70,7 @@ public class StudentController {
         return "studentInfor";
     }
 
-    //跳转修改密码页面
-    @RequestMapping("getUser")
-    public String getUser() {
-        return "studentUpdateUser";
-    }
 
-    //保存新密码
-    @RequestMapping("saveUser")
-    public String saveUser(String password, String password2, HttpServletRequest request, HttpServletResponse response) {
-        if (password.equals(password2)) {
-            Md5Hash md5Hash = new Md5Hash("password");
-            String userName = (String) request.getSession().getAttribute("userName");
-            studentService.updateUserByName(userName, md5Hash.toString());
-            try {
-                PrintWriter writer = response.getWriter();
-                writer.write("密码修改成功！");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return "studentInfor";
-        }
-        try {
-            PrintWriter writer = response.getWriter();
-            writer.write("两次密码不一致，请重新操作！");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "studentInfor";
-    }
 
     //获取学生周报列表
     @RequestMapping("studentWeekly")

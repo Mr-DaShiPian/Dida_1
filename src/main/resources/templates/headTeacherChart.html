@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
@@ -29,11 +28,7 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    <script th:src="@{/js/jquery-3.4.1.js}"></script>-->
     <script th:src="@{/js/echarts.min.js}"></script>
-    <script type="text/javascript">
-
-    </script>-->
 </head>
 <body>
 <!-- Side Navbar -->
@@ -42,37 +37,48 @@
         <!-- Sidebar Header    -->
         <div class="sidenav-header d-flex align-items-center justify-content-center">
             <!-- User Info-->
-            <div class="sidenav-header-inner text-center"><img th:src="@{/img/1573725322_738871.png}" alt="person" class="img-fluid rounded-circle">
-                <h2 class="h5">Nathan Andrews</h2><span>Web Developer</span>
+            <div class="sidenav-header-inner text-center"><img th:src="@{/img/1573730182.jpg}" alt="person" class="img-fluid rounded-circle">
+                <h2 class="h5">Java-1902</h2><span>F4</span>
             </div>
             <!-- Small Brand information, appears on minimized sidebar-->
-            <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
+            <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>F</strong><strong class="text-primary">4</strong></a></div>
         </div>
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
             <h5 class="sidenav-heading">Main</h5>
             <ul id="side-main-menu" class="side-menu list-unstyled">
-                <li ><a th:href="@{/login/homePage}"></i>主页                      </a></li>
-                <!--                <span shiro:hasRole="超管">-->
-                <li><a th:href="@{/login/homePage}"></i>超管    -----------------------                         </a></li>
-                <!--                    </span>-->
-                <!--                <span shiro:hasRole="学生">-->
-                <li><a th:href="@{/login/homePage}"></i> 学生-------------                            </a></li>
+                <li class="active"><a th:href="@{/login/homePage}"></i>主页                      </a></li>
+                <span shiro:hasRole="超管">
+                <li>    <a th:href="@{/SupperUser/seeClass}" th:text="个人资料管理"></a></li>
+                     <li>   <a th:href="@{/login/passwordEdit}" th:text="修改密码"></a></li>
+                    </span>
+                <span shiro:hasRole="学生">
                 <li>    <a th:href="@{/Student/studentInfor}" th:text="个人资料管理"></a></li>
                 <li>    <a th:href="@{/Student/studentWeekly}" th:text="周报管理"></a></li>
                 <li>   <a th:href="@{/Student/studentLeave}" th:text="请假申请"></a></li>
-                <!--                    </span>-->
-                <!--                <span shiro:hasRole="讲师">-->
-                <li><a th:href="@{/login/homePage}"></i>讲师  --------------------------                           </a></li>
-                <!--                    </span>-->
-                <!--                <span shiro:hasRole="班主任">-->
-                <li><a th:href="@{/login/homePage}"></i>班主任   ------------------------                          </a></li>
-                <li class="active">   <a th:href="@{/HeadTeacher/weeklyShow}" th:text="学生周报查看"></a></li>
+                                    </span>
+                <span shiro:hasRole="讲师">
+                                    <li>   <a th:href="@{/Lecture/getLeave}" th:text="请假审批"></a></li>
+                                    <li>   <a th:href="@{/Lecture/myLeaves}" th:text="个人请假"></a></li>
+                                  <li>   <a th:href="@{/login/passwordEdit}" th:text="修改密码"></a></li>
+                                            <li>   <a th:href="@{/Lecture/lectureweekly}" th:text="周报打分"></a></li>
+                                                      <li>   <a th:href="@{/Lecture/lecturestudentchart}" th:text="学生成绩分析"></a></li>
+                                    <li>   <a th:href="@{/Lecture/lectureindex}" th:text="学生信息表"></a></li>
+                                    <li>   <a th:href="@{/Lecture/classchart}" th:text="班级平均分"></a></li>
+                                    </span>
+                <span shiro:hasRole="班主任">
+                <li>   <a th:href="@{/login/passwordEdit}" th:text="修改密码"></a></li>
+                <li>   <a th:href="@{/HeadTeacher/weeklyShow}" th:text="学生周报查看"></a></li>
                 <li>   <a th:href="@{/HeadTeacher/headTeacherStudentShow}" th:text="学生管理及成绩查看"></a></li>
-                <!--                    </span>-->
-                <!--                <span shiro:hasRole="校长">-->
-                <li><a th:href="@{/login/homePage}"></i>校长     --------------------------                        </a></li>
-                <!--                    </span>-->
+                <li>   <a th:href="@{/HeadTeacher/getLeave}" th:text="请假审批"></a></li>
+                <li>   <a th:href="@{/HeadTeacher/myLeaves}" th:text="个人请假"></a></li>
+                                    </span>
+                <span shiro:hasRole="校长">
+                                                    <li>   <a th:href="@{/login/passwordEdit}" th:text="修改密码"></a></li>
+                                                    <li>   <a th:href="@{/Boos/getLeave}" th:text="请假审批"></a></li>
+                                                    <li>   <a th:href="@{/HeadTeacher/headTeacherStudentShow}" th:text="成绩查看"></a></li>
+
+                                    </span>
             </ul>
         </div>
     </div>
@@ -84,64 +90,10 @@
             <div class="container-fluid">
                 <div class="navbar-holder d-flex align-items-center justify-content-between">
                     <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="index.html" class="navbar-brand">
-                        <div class="brand-text d-none d-md-inline-block"><span>Bootstrap </span><strong class="text-primary">Dashboard</strong></div></a></div>
+                        <div class="brand-text d-none d-md-inline-block"><span>JAVA-1902</span><strong style="color:red;" class="text-primary">F4</strong></div></a></div>
                     <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-                        <!-- Notifications dropdown-->
-                        <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell"></i><span class="badge badge-warning">12</span></a>
-                            <ul aria-labelledby="notifications" class="dropdown-menu">
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                    <div class="notification d-flex justify-content-between">
-                                        <div class="notification-content"><i class="fa fa-envelope"></i>You have 6 new messages </div>
-                                        <div class="notification-time"><small>4 minutes ago</small></div>
-                                    </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                    <div class="notification d-flex justify-content-between">
-                                        <div class="notification-content"><i class="fa fa-twitter"></i>You have 2 followers</div>
-                                        <div class="notification-time"><small>4 minutes ago</small></div>
-                                    </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                    <div class="notification d-flex justify-content-between">
-                                        <div class="notification-content"><i class="fa fa-upload"></i>Server Rebooted</div>
-                                        <div class="notification-time"><small>4 minutes ago</small></div>
-                                    </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item">
-                                    <div class="notification d-flex justify-content-between">
-                                        <div class="notification-content"><i class="fa fa-twitter"></i>You have 2 followers</div>
-                                        <div class="notification-time"><small>10 minutes ago</small></div>
-                                    </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-bell"></i>view all notifications                                            </strong></a></li>
-                            </ul>
-                        </li>
-                        <!-- Messages dropdown-->
-                        <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope"></i><span class="badge badge-info">10</span></a>
-                            <ul aria-labelledby="notifications" class="dropdown-menu">
-                                <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                    <div class="msg-profile"> <img th:src="@{/img/avatar-1.jpg}" alt="..." class="img-fluid rounded-circle"></div>
-                                    <div class="msg-body">
-                                        <h3 class="h5">Jason Doe</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                                    </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                    <div class="msg-profile"> <img th:src="@{/img/avatar-2.jpg}" alt="..." class="img-fluid rounded-circle"></div>
-                                    <div class="msg-body">
-                                        <h3 class="h5">Frank Williams</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                                    </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                    <div class="msg-profile"> <img th:src="@{/img/avatar-3.jpg}" alt="..." class="img-fluid rounded-circle"></div>
-                                    <div class="msg-body">
-                                        <h3 class="h5">Ashley Wood</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                                    </div></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-envelope"></i>Read all messages    </strong></a></li>
-                            </ul>
-                        </li>
-                        <!-- Languages dropdown    -->
-                        <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img th:src="@{/img/flags/16/GB.png}" alt="English"><span class="d-none d-sm-inline-block">English</span></a>
-                            <ul aria-labelledby="languages" class="dropdown-menu">
-                                <li><a rel="nofollow" href="#" class="dropdown-item"> <img th:src="@{/img/flags/16/DE.png}" alt="English" class="mr-2"><span>German</span></a></li>
-                                <li><a rel="nofollow" href="#" class="dropdown-item"> <img th:src="@{/img/flags/16/FR.png}" alt="English" class="mr-2"><span>French                                                         </span></a></li>
-                            </ul>
-                        </li>
                         <!-- Log out-->
-                        <li class="nav-item"><a href="../login.html" class="nav-link logout"> <span class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a></li>
+                        <li class="nav-item"><a th:href="@{/login/logOut}" class="nav-link logout"> <span class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a></li>
                     </ul>
                 </div>
             </div>
