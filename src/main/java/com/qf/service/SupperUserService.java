@@ -52,5 +52,8 @@ public interface SupperUserService {
     //用户管理, 查询需求
     public List<User> seleuserManager();
     public List<User> seleuserManagerByUname(String userName);
-
+    //增加用户
+    public int insertManager(User user);
+    //
+    public int updateManager(String password,String userName);
 }

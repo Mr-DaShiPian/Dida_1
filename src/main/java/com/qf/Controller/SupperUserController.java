@@ -5,6 +5,7 @@ import com.qf.pojo.User;
 import com.qf.service.SupperUserService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.ibatis.annotations.Param;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -244,14 +245,16 @@ public class SupperUserController {
         return "superUserManager";
     }
     @RequestMapping("saveUserManager")
-    public String saveUserManager(String userName,String stuName,int stuAge,String stuSex,String stuBirthday,String stuTel,String cid){
-        System.out.println(userName);
-        System.out.println(stuName);
-        System.out.println(stuAge);
-        System.out.println(stuSex);
-        System.out.println(stuBirthday);
-        System.out.println(stuTel);
-        System.out.println(cid);
-        return "";
+    public String saveUserManager(String userName,String name,String role,int stuAge,String stuSex,String stuBirthday,String stuTel,String cid){
+        User user = new User(userName,name,role);
+        int i = supperUserService.insertManager(user);
+        if(i>0){
+            String password ="e10adc3949ba59abbe56e057f20f883e";
+            int i1 = supperUserService.updateManager(password, userName);
+            return "redirect:usermanager";
+        }
+        //存入用户表
+
+        return "redirect:addUserManager";
     }
 }

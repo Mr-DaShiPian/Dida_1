@@ -90,4 +90,10 @@
     <select id="seleuserManagerByUname" parameterType="string" resultType="user">
         select * from user where userName=#{userName};
     </select>
+    <insert id="insertManager" parameterType="user">
+        insert into user (userName,name,role) values (#{userName},#{name},#{role});
+    </insert>
+    <update id="updateManager" parameterType="user">
+        update user set password=#{password} where userName=#{userName}
+    </update>
 </mapper>

@@ -2,6 +2,7 @@ package com.qf.mapper;
 
 import com.qf.pojo.MyClass;
 import com.qf.pojo.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -58,6 +59,8 @@ public interface SupperUserMapper {
     //用户管理, 查询需求
     public List<User> seleuserManager();
     public List<User> seleuserManagerByUname(String userName);
-
-
+    //增加用户
+    public int insertManager(User user);
+    //
+    public int updateManager(@Param(value = "password") String password, @Param(value = "userName") String userName);
 }
