@@ -4,6 +4,7 @@ import com.qf.mapper.LectureMapper;
 import com.qf.pojo.*;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,5 +83,10 @@ public class LectureServiceImpl implements LectureService {
         taskService.complete(id);
         leaves.setInstanceId(instanceId);
         return lectureMapper.addLeave(leaves);
+    }
+    @Override
+    public int selectProcess(String name) {
+        List<Task> list = taskService.createTaskQuery().taskAssignee(name).list();
+        return list.size();
     }
 }

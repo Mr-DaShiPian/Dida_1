@@ -29,14 +29,7 @@ public class BoosController {
         this.boosService = boosService;
     }
 
-    @RequestMapping("homePage")
-    public String homePage(HttpServletRequest request) {
-        //仅测试用，正式版要删除
-        if (request.getSession().getAttribute("userName")==null){
-            request.getSession().setAttribute("userName", "xiaozhang");
-        }
-        return "homePage";
-    }
+
 //跳转修改密码
     @RequestMapping("boosUpdateUser")
     public String boosUpdateUser() {

@@ -7,6 +7,7 @@ import com.qf.pojo.MyClass;
 import com.qf.pojo.Student;
 import com.qf.pojo.Weekly;
 import com.qf.service.StudentService;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -145,12 +146,17 @@ public class StudentController {
     public String studentLeave(HttpServletRequest request) {
         String userName = (String) request.getSession().getAttribute("userName");
         Student student = studentService.getStudentByUserName(userName);
-        MyClass myClass = studentService.selMyClassByCid(student.getCid());
-        String boosName = studentService.getboosByRole();
-        request.setAttribute("stuName", student.getStuName());
-        request.setAttribute("myClass", myClass);
-        request.setAttribute("boosName", boosName);
-        return "studentLeave";
+//        int i = studentService.selectProcess(student.getStuName());
+//        if (i==0) {
+            MyClass myClass = studentService.selMyClassByCid(student.getCid());
+            String boosName = studentService.getboosByRole();
+            request.setAttribute("stuName", student.getStuName());
+            request.setAttribute("myClass", myClass);
+            request.setAttribute("boosName", boosName);
+            return "studentLeave";
+//        }else {
+//            return "leaveFailure";
+//        }
     }
 
     @RequestMapping("saveLeave")

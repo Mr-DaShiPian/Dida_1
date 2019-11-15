@@ -96,12 +96,16 @@ public class LectureController {
     @RequestMapping("myLeaves")
     public String myLeaves(HttpServletRequest request){
         String boosName = lectureService.getboosByRole();
-//        String userName = (String) request.getSession().getAttribute("userName");
-        String userName = "xiaowangba";
+        String userName = (String) request.getSession().getAttribute("userName");
         User user = lectureService.getUserByUserName(userName);
-        request.setAttribute("user",user);
-        request.setAttribute("boos",boosName);
-        return "hTeacherLeave";
+//        int i = lectureService.selectProcess(user.getName());
+//        if (i==0) {
+            request.setAttribute("user", user);
+            request.setAttribute("boos", boosName);
+            return "hTeacherLeave";
+//        }else {
+//            return "leaveFailure";
+//        }
     }
     @RequestMapping("saveLeave")
     public String saveLeave(Leaves leaves){

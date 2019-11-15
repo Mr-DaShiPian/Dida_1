@@ -82,11 +82,17 @@
 
 
     <!--    ////////////////-->
+    <select id="getLeaveDateById" parameterType="int" resultType="leaves">
+        select startDate,endDate from leaves where lid=#{lid}
+    </select>
     <select id="getLeaveByLecture" resultType="leaves">
         select * from leaves where status = '讲师过审'
      </select>
     <update id="agreeLeaves" parameterType="int">
         update leaves set status='班主任过审' where lid=#{lid}
+    </update>
+    <update id="endLeaves" parameterType="int">
+        update leaves set status='已审批' where lid=#{lid}
     </update>
     <select id="getInstanceId" parameterType="int" resultType="java.lang.String">
         select instanceId from leaves where lid = #{lid}

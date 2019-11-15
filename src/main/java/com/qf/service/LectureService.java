@@ -28,5 +28,6 @@ public interface LectureService {
     public String getboosByRole();
     public User getUserByUserName(String userName);
     public int addLeave(Leaves leaves);
-
+    //备用单次请假
+    public int selectProcess(String name);
 }

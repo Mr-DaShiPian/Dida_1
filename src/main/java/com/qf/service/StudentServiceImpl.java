@@ -9,6 +9,7 @@ import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -120,5 +121,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public MyClass selMyClassByCid(String cid) {
         return studentMapper.selMyClassByCid(cid);
+    }
+
+    @Override
+    public int selectProcess(String name) {
+        List<Task> list = taskService.createTaskQuery().taskAssignee(name).list();
+        return list.size();
     }
 }

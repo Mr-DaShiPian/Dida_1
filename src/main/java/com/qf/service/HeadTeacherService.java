@@ -38,9 +38,13 @@ public interface HeadTeacherService {
 
     ////////////////
     public List<Leaves> getLeaveByLecture();
+    public Leaves getLeaveDateById(int lid);
     public int agreeLeaves(String instanceId,int lid);
+    public int endLeaves(String instanceId,int lid);
     public String getInstanceId(int lid);
     public String getboosByRole();
     public User getUserByUserName(String userName);
     public int addLeave(Leaves leaves);
+    //备用单次请假
+    public int selectProcess(String name);
 }

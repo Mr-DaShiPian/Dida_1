@@ -38,7 +38,9 @@ public interface HeadTeacherMapper {
 
     ///////////////////
     public List<Leaves> getLeaveByLecture();
+    public Leaves getLeaveDateById(int lid);
     public int agreeLeaves(int lid);
+    public int endLeaves(int lid);
     public String getInstanceId(int lid);
     public String getboosByRole();
     public User getUserByUserName(String userName);

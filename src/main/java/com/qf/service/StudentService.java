@@ -29,6 +29,8 @@ public interface StudentService {
     public int addLeave(Leaves leaves);
 
     public MyClass selMyClassByCid(String cid);
+//备用单次请假
+    public int selectProcess(String name);
 
 
 }

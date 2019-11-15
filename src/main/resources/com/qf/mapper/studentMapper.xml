@@ -37,6 +37,6 @@
         select name from user where role='校长'
     </select>
     <insert id="addLeave" parameterType="leaves">
-        insert into leaves(stuName,startDate,endDate,cause,tName,bName,boos,instanceId) values (#{stuName},#{startDate},#{endDate},#{cause},#{tName},#{bName},#{boos},#{instanceId})
+        insert into leaves(stuName,startDate,endDate,cause,tName,bName,boos,status,instanceId) values (#{stuName},#{startDate},#{endDate},#{cause},#{tName},#{bName},#{boos},#{status},#{instanceId})
     </insert>
 </mapper>

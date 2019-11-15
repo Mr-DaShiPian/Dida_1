@@ -10,10 +10,10 @@
     </update>
     <!--    ////////////////-->
     <select id="getLeaveByLecture" resultType="leaves">
-        select * from leaves where status = '班主任过审' or tName='职位'
+        select * from leaves where status = '班主任过审' or (tName='职位' and status='已提交')
      </select>
     <update id="agreeLeaves" parameterType="int">
-        update leaves set status='校长过审' where lid=#{lid}
+        update leaves set status='已批准' where lid=#{lid}
     </update>
     <select id="getInstanceId" parameterType="int" resultType="java.lang.String">
         select instanceId from leaves where lid = #{lid}

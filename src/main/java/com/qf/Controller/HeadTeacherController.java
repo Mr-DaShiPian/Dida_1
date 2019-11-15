@@ -16,10 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 @RequestMapping("HeadTeacher")
@@ -357,19 +356,39 @@ public class HeadTeacherController {
     @RequestMapping("agreeLeaves")
     @ResponseBody
     public String agreeLeaves(int lid){
+        Leaves leaveDate = headTeacherService.getLeaveDateById(lid);
         String instanceId = headTeacherService.getInstanceId(lid);
-        int i = headTeacherService.agreeLeaves(instanceId,lid);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date start = null;
+        Date end = null;
+        try {
+            start = simpleDateFormat.parse(leaveDate.getStartDate());
+            end = simpleDateFormat.parse(leaveDate.getEndDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long daysTime = end.getTime() - start.getTime();
+        int days = (int)daysTime/(24*60*60*1000);
+        if (days>=3) {
+            headTeacherService.agreeLeaves(instanceId, lid);
+        }else {
+            headTeacherService.endLeaves(instanceId,lid);
+        }
         return "ok";
     }
     @RequestMapping("myLeaves")
     public String myLeaves(HttpServletRequest request){
         String boosName = headTeacherService.getboosByRole();
-//        String userName = (String) request.getSession().getAttribute("userName");
-        String userName = "banzhuren";
+        String userName = (String) request.getSession().getAttribute("userName");
         User user = headTeacherService.getUserByUserName(userName);
+//        int i = headTeacherService.selectProcess(user.getName());
+//        if (i==0){
         request.setAttribute("user",user);
         request.setAttribute("boos",boosName);
         return "hTeacherLeave";
+//        }else {
+//            return "leaveFailure";
+//        }
     }
     @RequestMapping("saveLeave")
     public String saveLeave(Leaves leaves){

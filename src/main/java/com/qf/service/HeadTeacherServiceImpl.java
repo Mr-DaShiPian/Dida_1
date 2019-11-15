@@ -6,6 +6,7 @@ import com.qf.pojo.*;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -102,10 +103,21 @@ public class HeadTeacherServiceImpl implements HeadTeacherService{
     }
 
     @Override
+    public Leaves getLeaveDateById(int lid) {
+        return headTeacherMapper.getLeaveDateById(lid);
+    }
+
+    @Override
     public int agreeLeaves(String instanceId,int lid) {
         String id = taskService.createTaskQuery().processInstanceId(instanceId).singleResult().getId();
         taskService.complete(id);
         return headTeacherMapper.agreeLeaves(lid);
+    }
+    @Override
+    public int endLeaves(String instanceId,int lid) {
+        String id = taskService.createTaskQuery().processInstanceId(instanceId).singleResult().getId();
+        taskService.complete(id);
+        return headTeacherMapper.endLeaves(lid);
     }
 
     @Override
@@ -136,5 +148,10 @@ public class HeadTeacherServiceImpl implements HeadTeacherService{
         taskService.complete(id);
         leaves.setInstanceId(instanceId);
         return headTeacherMapper.addLeave(leaves);
+    }
+    @Override
+    public int selectProcess(String name) {
+        List<Task> list = taskService.createTaskQuery().taskAssignee(name).list();
+        return list.size();
     }
 }

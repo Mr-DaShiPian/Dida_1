@@ -38,7 +38,7 @@
 
 <!--    ////////////////-->
     <select id="getLeaveByLecture" resultType="leaves">
-        select * from leaves where status = '已提交'
+        select * from leaves where status = '学生提交'
      </select>
     <update id="agreeLeaves" parameterType="int">
         update leaves set status='讲师过审' where lid=#{lid}

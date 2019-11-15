@@ -7,4 +7,5 @@ public interface LoginService {
     public String getRolenameByUserName(String userName);
     //修改密码
     public int updatePassword(String password,String userName);
+
 }
