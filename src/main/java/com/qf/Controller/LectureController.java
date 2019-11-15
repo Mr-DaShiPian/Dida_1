@@ -2,17 +2,12 @@ package com.qf.Controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.qf.pojo.Leaves;
-import com.qf.pojo.Score;
-import com.qf.pojo.Student;
-import com.qf.pojo.User;
-import com.qf.pojo.Weekly;
+import com.qf.pojo.*;
 import com.qf.service.LectureService;
 import org.apache.poi.hssf.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,10 +27,11 @@ public class LectureController {
 //    @Autowired
 //    private SecurityManager securityManager;
     //学生信息查看分页
+
     @RequestMapping("lectureindex")
-    public String index(@RequestParam(defaultValue = "1") int pageNum, Model model){
+    public String index01(@RequestParam(defaultValue = "1") int pageNum, Model model){
         PageHelper.startPage(pageNum,5);
-        List<Student> StudentList = lectureService.getStudentList();
+        List<Student> StudentList = lectureService.getStudentListTable();
         PageInfo<Student> pageInfo = new PageInfo<Student>(StudentList);
         model.addAttribute("pageInfo",pageInfo);
         return "lectureindex";
@@ -47,7 +43,7 @@ public class LectureController {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("信息表");
 
-        List<Student> classmateList = lectureService.getStudentList();
+        List<Student> classmateList = lectureService.getStudentListTable();
 
         String fileName = "userinf"+"信息表"+".xls";//设置要导出的文件的名字
         //新增数据行，并且设置单元格数据

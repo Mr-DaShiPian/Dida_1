@@ -1,17 +1,12 @@
 package com.qf.mapper;
 
-import com.qf.pojo.Score;
-import com.hazelcast.core.LifecycleService;
-import com.qf.pojo.Leaves;
-import com.qf.pojo.Student;
-import com.qf.pojo.Weekly;
-import com.qf.pojo.User;
+import com.qf.pojo.*;
 
 import java.util.List;
 
 public interface LectureMapper {
     //学生信息
-    public List<Student> getStudentList();
+    public List<Student> getStudentListTable();
     //学生周报
     public List<Weekly>  getWeeklyList();
     public List<Weekly>  getWeeklyListchart();

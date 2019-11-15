@@ -2,7 +2,6 @@ package com.qf.service;
 
 import com.qf.mapper.LectureMapper;
 import com.qf.pojo.*;
-import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +20,8 @@ public class LectureServiceImpl implements LectureService {
     @Autowired
     private TaskService taskService;
     @Override
-    public List<Student> getStudentList() {
-        return lectureMapper.getSudentList();
+    public List<Student> getStudentListTable() {
+        return lectureMapper.getStudentListTable();
     }
     @Override
     public List<Weekly> getWeeklyList(){return lectureMapper.getWeeklyList();}
