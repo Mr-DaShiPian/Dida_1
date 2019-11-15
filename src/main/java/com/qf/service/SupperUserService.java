@@ -1,7 +1,9 @@
 package com.qf.service;
 
 import com.qf.pojo.MyClass;
+import com.qf.pojo.Student;
 import com.qf.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -58,4 +60,9 @@ public interface SupperUserService {
     public int updateManager(String password,String userName);
     //用户表的删除
     public int deleteManager(int userId);
+    //根据id 修改密码
+    public int updateManagerByUserId(String password,int userId);
+    public String selectManagerByUserName(String userName);
+
+    public List<Student> selectStudentList(String stuName);
 }

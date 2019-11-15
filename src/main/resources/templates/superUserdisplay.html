@@ -145,6 +145,8 @@
                           <td th:text="${i.getRole()}"></td>
                           <td>
                               <a th:href="@{deleManager(userId=${i.getUserId()})}" th:text="删除"></a>
+                              <a th:href="@{resetPassWord(userId=${i.getUserId()})}" th:text="重置"></a>
+                              <a th:href="@{userDetails(userName=${i.getUserName()})}" th:text="详情"></a>
                           </td>
                         </tr>
                       </tbody>

@@ -1,6 +1,7 @@
 package com.qf.Controller;
 
 import com.qf.pojo.MyClass;
+import com.qf.pojo.Student;
 import com.qf.pojo.User;
 import com.qf.service.SupperUserService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
@@ -263,5 +264,22 @@ public class SupperUserController {
             return "redirect:usermanager";
         }
         return "redirect:usermanager";
+    }
+    //重置密码
+    @RequestMapping("resetPassWord")
+    public String resetPassWord(int userId){
+        String password ="e10adc3949ba59abbe56e057f20f883e";
+        int i = supperUserService.updateManagerByUserId(password, userId);
+        if(i>0){
+            return "redirect:usermanager";
+        }
+        return "redirect:usermanager";
+    }
+    @RequestMapping("userDetails")
+    public String userDetails(String userName,Model model){
+        String stuName = supperUserService.selectManagerByUserName(userName);
+        List<Student> stuList = supperUserService.selectStudentList(stuName);
+        model.addAttribute("stuList",stuList);
+        return "superUserDetails";
     }
 }

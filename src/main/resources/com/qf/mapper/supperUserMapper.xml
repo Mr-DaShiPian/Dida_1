@@ -99,4 +99,14 @@
     <delete id="deleteManager" parameterType="int">
         delete from user where userId=#{userId}
     </delete>
+    <!--根据id修改 密码-->
+    <update id="updateManagerByUserId">
+        update user set password=#{password} where userId=#{userId}
+    </update>
+    <select id="selectManagerByUserName" parameterType="string" resultType="string">
+        select name from user where userName=#{userName}
+    </select>
+    <select id="selectStudentList" parameterType="string" resultType="student">
+        select * from student where stuName=#{stuName}
+    </select>
 </mapper>

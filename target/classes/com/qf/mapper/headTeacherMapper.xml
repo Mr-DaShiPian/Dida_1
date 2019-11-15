@@ -72,7 +72,32 @@
     <insert id="addStudent" parameterType="student">
         insert into student(stuName,userName,stuAge,stuSex,stuBirthday,stuTel,cid) values (#{stuName},#{userName},#{stuAge},#{stuSex},#{stuBirthday},#{stuTel},#{cid})
     </insert>
+    <select id="getGradeByDate" resultType="weekly">
+        select * from weekly where weekDate=#{weekDate} and stuName in
+        <foreach collection="studentByCidList" item="student" open="(" close=")" separator=",">
+             #{student.stuName}
+        </foreach>
+
+    </select>
 
 
-
+    <!--    ////////////////-->
+    <select id="getLeaveByLecture" resultType="leaves">
+        select * from leaves where status = '讲师过审'
+     </select>
+    <update id="agreeLeaves" parameterType="int">
+        update leaves set status='班主任过审' where lid=#{lid}
+    </update>
+    <select id="getInstanceId" parameterType="int" resultType="java.lang.String">
+        select instanceId from leaves where lid = #{lid}
+    </select>
+    <select id="getboosByRole" resultType="java.lang.String">
+        select name from user where role='校长'
+    </select>
+    <select id="getUserByUserName" parameterType="java.lang.String" resultType="user">
+        select * from user where userName=#{userName}
+    </select>
+    <insert id="addLeave" parameterType="leaves">
+        insert into leaves(stuName,startDate,endDate,cause,tName,bName,boos,instanceId) values (#{stuName},#{startDate},#{endDate},#{cause},#{tName},#{bName},#{boos},#{instanceId})
+    </insert>
 </mapper>

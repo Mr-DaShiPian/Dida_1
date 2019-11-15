@@ -2,6 +2,7 @@ package com.qf.service;
 
 import com.qf.mapper.SupperUserMapper;
 import com.qf.pojo.MyClass;
+import com.qf.pojo.Student;
 import com.qf.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -149,6 +150,21 @@ public class SupperUserServiceImpl implements SupperUserService {
     @Override
     public int deleteManager(int userId) {
         return supperUserMapper.deleteManager(userId);
+    }
+
+    @Override
+    public int updateManagerByUserId(String password,int userId) {
+        return supperUserMapper.updateManagerByUserId(password,userId);
+    }
+
+    @Override
+    public String  selectManagerByUserName(String userName) {
+        return supperUserMapper.selectManagerByUserName(userName);
+    }
+
+    @Override
+    public List<Student> selectStudentList(String stuName) {
+        return supperUserMapper.selectStudentList(stuName);
     }
 
 

@@ -1,6 +1,7 @@
 package com.qf.mapper;
 
 import com.qf.pojo.MyClass;
+import com.qf.pojo.Student;
 import com.qf.pojo.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
@@ -65,5 +66,11 @@ public interface SupperUserMapper {
     public int updateManager(@Param(value = "password") String password, @Param(value = "userName") String userName);
     //用户表的删除
     public int deleteManager(int userId);
+    //根据id 修改密码
+    public int updateManagerByUserId(@Param(value = "password") String password,@Param(value = "userId") int userId);
+    //根据userName 查询是学生的姓名
+    public String selectManagerByUserName(@Param(value = "userName")String userName);
+
+    public List<Student> selectStudentList(String stuName);
 
 }
