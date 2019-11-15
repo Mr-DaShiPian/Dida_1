@@ -37,6 +37,7 @@ public class ShiroConfiguration {
 //        map.put("Boos/*","roles[校长]");
 //        map.put("Lecture/*","roles[讲师]");
         map.put("Student/*","roles[学生]");
+        map.put("Super/*","roles[超管]");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
 }

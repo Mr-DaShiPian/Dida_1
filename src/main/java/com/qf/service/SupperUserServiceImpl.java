@@ -146,5 +146,10 @@ public class SupperUserServiceImpl implements SupperUserService {
         return supperUserMapper.updateManager(password,userName);
     }
 
+    @Override
+    public int deleteManager(int userId) {
+        return supperUserMapper.deleteManager(userId);
+    }
+
 
 }

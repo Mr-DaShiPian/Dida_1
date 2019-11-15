@@ -253,8 +253,15 @@ public class SupperUserController {
             int i1 = supperUserService.updateManager(password, userName);
             return "redirect:usermanager";
         }
-        //存入用户表
-
         return "redirect:addUserManager";
+    }
+    //删除用户
+    @RequestMapping("deleManager")
+    public String deleManager(int userId){
+        int i = supperUserService.deleteManager(userId);
+        if(i>0){
+            return "redirect:usermanager";
+        }
+        return "redirect:usermanager";
     }
 }
